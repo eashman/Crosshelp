@@ -1,0 +1,25 @@
+version: '1.0'
+services:
+  corssboderhelp:
+    image: postgres:9.5.4
+    container_name: corssboderhelp_postgres
+    volumes:
+      - ./tmp/data/postgres:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+  redis:
+    image: redis:3.2
+    container_name: corssboderhelp_redis
+    volumes:
+      - ./tmp/data/redis:/data
+    ports:
+      - 6379:6379
+  elasticsearch:
+    image: elasticsearch:2.3
+    container_name: corssboderhelp_elasticsearch
+    volumes:
+      - ./tmp/data/elasticsearch:/usr/share/elasticsearch/data
+      - ./log/elasticsearch:/usr/share/elasticsearch/log
+    ports:
+      - 9200:9200
+      - 9300:9300

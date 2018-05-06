@@ -20,6 +20,7 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: 127.0.0.1
 
 development:
   <<: *default
@@ -29,10 +30,10 @@ development:
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user that initialized the database.
-  #username: CrossBorderHelp
+  username: postgres
 
   # The password associated with the postgres role (username).
-  #password:
+  password: postgres
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -81,5 +82,5 @@ test:
 production:
   <<: *default
   database: CrossBorderHelp_production
-  username: CrossBorderHelp
-  password: <%= ENV['CROSSBORDERHELP_DATABASE_PASSWORD'] %>
+  username: postgres
+  password: postgres
