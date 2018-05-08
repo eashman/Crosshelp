@@ -6,14 +6,14 @@ services:
     volumes:
       - ./tmp/data/postgres:/var/lib/postgresql/data
     ports:
-      - 5432:5432
+      - 25432:5432
   redis:
     image: redis:3.2
     container_name: corssboderhelp_redis
     volumes:
       - ./tmp/data/redis:/data
     ports:
-      - 6379:6379
+      - 26379:6379
   elasticsearch:
     image: elasticsearch:2.3
     container_name: corssboderhelp_elasticsearch
@@ -21,5 +21,5 @@ services:
       - ./tmp/data/elasticsearch:/usr/share/elasticsearch/data
       - ./log/elasticsearch:/usr/share/elasticsearch/log
     ports:
-      - 9200:9200
-      - 9300:9300
+      - 29200:9200
+      - 29300:9300
