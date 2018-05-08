@@ -81,4 +81,3 @@ module API
       result
     end
   end
-end
