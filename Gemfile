@@ -37,8 +37,6 @@ gem 'grape-swagger'
 gem 'trestle'
 gem 'trestle-auth'
 
-#model
-gem 'annotate'
 #password
 gem 'bcrypt'
 # Use ActiveStorage variant
@@ -55,6 +53,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  #model
+  gem 'annotate'
   # Deployment system
   gem 'rubocop', require: false
   gem 'mina', '~> 0.3.8', require: false
