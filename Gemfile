@@ -33,11 +33,17 @@ gem 'grape-swagger-rails'
 #api doc
 gem 'grape-swagger'
 
+#dashboard
+gem 'trestle'
+gem 'trestle-auth'
 
+#model
 gem 'annotate'
+#password
 gem 'bcrypt'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
+#cache data
 gem 'redis'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
