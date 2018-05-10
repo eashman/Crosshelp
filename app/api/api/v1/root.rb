@@ -3,6 +3,7 @@ module API
     class Root < ::API::Root
       version 'v1', using: :accept_version_header
       # Mount points above
+      mount API::V1::Users
     end
   end
 end

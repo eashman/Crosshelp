@@ -36,7 +36,12 @@ gem 'grape-swagger'
 #dashboard
 gem 'trestle'
 gem 'trestle-auth'
-
+#cross-domain
+gem 'rack-cors'
+# Sentry support
+gem 'sentry-raven'
+#token
+gem 'has_secure_token'
 #password
 gem 'bcrypt'
 # Use ActiveStorage variant

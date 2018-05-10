@@ -5,17 +5,17 @@ module API
       set_meta
     end
 
-    #def current_user
-    #  host  = headers['Host']
-    #  return User.first if host == '127.0.0.1:3000'
+    def current_user
+      host  = headers['Host']
+      return User.first if host == '127.0.0.1:3000'
 
-    #  return @current_user if @current_user
+      return @current_user if @current_user
 
-    #  @current_user = User.find_by(authentication_token: headers['Authorization'])&.user
-    #  state_error! unless @current_user
+      @current_user = User.find_by(token: headers['Authorization'])&.user
+      state_error! unless @current_user
 
-    #  Raven.extra_context(params: params.as_json, headers: headers.as_json, url: request.url)
-    #  @current_user
+      Raven.extra_context(params: params.as_json, headers: headers.as_json, url: request.url)
+      @current_user
     end
 
     def raven_capture(e)
@@ -81,3 +81,4 @@ module API
       result
     end
   end
+end
