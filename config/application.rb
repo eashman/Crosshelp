@@ -17,8 +17,8 @@ module CrossBorderHelp
     # the framework and any gems in your application.
     #config.active_job.queue_adapter = :sidekiq
     config.time_zone = 'Beijing'
-    config.i18n.available_locales = [:'zh-CN', :en]
-    config.i18n.default_locale = :'zh-CN'
+    #config.i18n.available_locales = [:'zh-CN', :en]
+    #config.i18n.default_locale = :'zh-CN'
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'
