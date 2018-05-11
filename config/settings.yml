@@ -4,3 +4,7 @@ rongcloud:
   host:
   timeout:
   debug_mode:
+
+jpush:
+  appkey:
+  master_secret:

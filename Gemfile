@@ -56,6 +56,8 @@ gem 'config'
 # gem 'capistrano-rails', group: :development
 gem 'sidekiq' # async events
 gem 'sidekiq-limit_fetch' # pause queue
+#jpush
+gem 'jpush'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
