@@ -19,6 +19,7 @@ module CrossBorderHelp
     config.time_zone = 'Beijing'
     #config.i18n.available_locales = [:'zh-CN', :en]
     #config.i18n.default_locale = :'zh-CN'
+    config.autoload_paths += %W(#{config.root}/app/services)
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'

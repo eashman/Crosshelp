@@ -44,10 +44,14 @@ gem 'sentry-raven'
 gem 'has_secure_token'
 #password
 gem 'bcrypt'
+#RongCloud Server API
+gem 'rong_cloud_server'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 #cache data
 gem 'redis'
+#yml params
+gem 'config'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'sidekiq' # async events
