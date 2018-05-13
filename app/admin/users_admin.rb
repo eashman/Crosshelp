@@ -5,10 +5,11 @@ Trestle.resource(:users) do
 
   # Customize the table columns shown on the index view.
   #
-  table do
-    column :name
-    column :created_at, align: :center
-  end
+  # table do
+  #   column :name
+  #   column :created_at, align: :center
+  #   actions
+  # end
 
   # Customize the form fields shown on the new/edit views.
   #

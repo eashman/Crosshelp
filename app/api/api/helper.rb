@@ -7,7 +7,7 @@ module API
 
     def current_user
       host  = headers['Host']
-      return User.first if host == '127.0.0.1:3000'
+      return User.first if host == 'localhost:3000'
 
       return @current_user if @current_user
 
