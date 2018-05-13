@@ -31,6 +31,7 @@ module CrossBorderHelp
 
     config.i18n.available_locales = [:"zh-CN", :en]
     config.i18n.default_locale = :"zh-CN"
+    config.eager_load_paths += Dir[Rails.root.join('lib')]
     config.autoload_paths += %W(#{config.root}/app/services)
     config.middleware.insert_before 0, Rack::Cors do
       allow do

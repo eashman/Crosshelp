@@ -1,0 +1,6 @@
+# Logfile created on 2018-05-13 23:26:19 +0800 by logger.rb/61378
+E, [2018-05-13T23:41:41.045702 #98244] ERROR -- : RequestId: 5AF85CB401F3FC08C62D6618, Code: InvalidBucketName, Message: The specified bucket is not valid., HostId: oss-cn-beijing.aliyuncs.com, BucketName: 13d8df361f8cb383a593dc752383c83e.png, HTTPCode: 400
+E, [2018-05-13T23:57:25.896676 #3778] ERROR -- : RequestId: 5AF860655C8CDB80D632002B, Code: InvalidBucketName, Message: The specified bucket is not valid., HostId: oss-cn-beijing.aliyuncs.com, BucketName: 30970f542087c600timg.jpg, HTTPCode: 400
+E, [2018-05-14T00:00:40.951301 #5082] ERROR -- : RequestId: 5AF861283299ECFF6F33FF0A, Code: InvalidBucketName, Message: The specified bucket is not valid., HostId: oss-cn-beijing.aliyuncs.com, BucketName: b3f7982903784400625770f4f24740a9timg.jpg, HTTPCode: 400
+E, [2018-05-14T00:01:55.831221 #5737] ERROR -- : RequestId: 5AF8617301F3FC08C63C529C, Code: InvalidBucketName, Message: The specified bucket is not valid., HostId: oss-cn-beijing.aliyuncs.com, BucketName: a42c32ffb464e6caf46b7a218810ab14timg.jpg, HTTPCode: 400
+E, [2018-05-14T00:04:49.915160 #6744] ERROR -- : RequestId: 5AF86221F9233E30943A08E1, Code: NoSuchBucket, Message: The specified bucket does not exist., HostId: oss-cn-beijing.aliyuncs.com, BucketName: aa3a5b96d10b52143113f7c4ce732f01image, HTTPCode: 404

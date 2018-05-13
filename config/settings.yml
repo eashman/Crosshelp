@@ -18,3 +18,9 @@ redis:
 
 logs:
   jpush: log/jpush.log
+
+aliyun:
+  access_key_id: LTAIXiGggqWgevcM
+  access_key_secret: CWJDxUrWR9fwI4qVlLjBYFCQij5xuF
+  bucket: kuajinghelp
+  endpoint: oss-cn-beijing.aliyuncs.com
