@@ -8,3 +8,13 @@ rongcloud:
 jpush:
   appkey:
   master_secret:
+
+redis:
+  host: 127.0.0.1
+  #password: estate
+  port: 26379
+  expires_in: 5400
+  cache: 1
+
+logs:
+  jpush: log/jpush.log

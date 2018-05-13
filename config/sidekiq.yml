@@ -1,0 +1,12 @@
+development:
+  :pidfile: ./tmp/pids/sidekiq.pid
+  :logfile: ./log/sidekiq.log
+  :concurrency: 1
+  :queues:
+  - [production_jpush_service, 1]
+production:
+  :pidfile: ./tmp/pids/sidekiq.pid
+  :logfile: ./log/sidekiq.log
+  :concurrency: 1
+  :queues:
+  - [production_jpush_service, 1]

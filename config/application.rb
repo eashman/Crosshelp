@@ -17,6 +17,18 @@ module CrossBorderHelp
     # the framework and any gems in your application.
     #config.active_job.queue_adapter = :sidekiq
     config.time_zone = 'Beijing'
+    config.cache_store = :redis_store, {
+      host: Settings.redis.host,
+      password: Settings.redis.password,
+      port: Settings.redis.port,
+      db: Settings.redis.cache,
+      expires_in: Settings.redis.expires_in
+    }
+
+    config.active_job.queue_adapter = :sidekiq
+    config.active_job.queue_name_prefix = Rails.env
+    config.active_job.queue_name_delimiter = '_'
+
     config.i18n.available_locales = [:"zh-CN", :en]
     config.i18n.default_locale = :"zh-CN"
     config.autoload_paths += %W(#{config.root}/app/services)

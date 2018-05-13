@@ -50,12 +50,15 @@ gem 'rong_cloud_server'
 # gem 'mini_magick', '~> 4.8'
 #cache data
 gem 'redis'
+gem 'redis-rails'
 #yml params
 gem 'config'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'sidekiq' # async events
-gem 'sidekiq-limit_fetch' # pause queue
+
+#oss
+gem 'aliyun-sdk'
 #jpush
 gem 'jpush'
 # Reduces boot times through caching; required in config/boot.rb
