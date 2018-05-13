@@ -23,10 +23,25 @@ module API
           patch '/users/vip' do
             @current_user = current_user
             if @current_user.job
-              wrap_meta(msg: '该用户已经申请Vip成功')
+              wrap_meta(msg: '该用户已经成为Vip成功')
             else
               @current_user.update!(job: true)
-              wrap_meta(msg: '申请Vip成功')
+              wrap_meta(msg: '已经申请Vip')
+            end
+          end
+
+          desc '申请企业会员 [PATCH /users/corporater]'
+          params do
+            requires :business_licence, type: String, desc: '营业执照'
+          end
+          patch '/users/corporater' do
+            @current_user = current_user
+            if @current_user.corporater
+              wrap_meta(msg: '该用户已经申请企业会员成功')
+            else
+              @current_user.update!(corporater: true,
+                                    business_licence:params.business_licence)
+              wrap_meta(msg: '申请企业会员成功')
             end
           end
 
