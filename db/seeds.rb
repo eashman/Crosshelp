@@ -6,3 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 Administrator.create(email: "admin@kuangjinghelp.com", password: "123456")
+
+TAGE = "公司整体战略,企业管理,AMAZON运营,EBAY运营,速卖通运营,WISH运营,亚马逊选品,产品开发,人力资源管理,招聘管理,采购运营管理,黑科技,大数据分析,站外引流,物流渠道开发管理,SEO/SEM,ERP系统开发运营,网络技术架构设计,行政管理,FB/Google推广,VAT,财务管理及规划,客服沟通,跨境支付,知识产权,绩效考核制度设计,商标专利,销售管理,美工设计,仓储管理,摄影摄像,工业设计,软件开发"
+TAGE.split(',').each_with_index do |item,index|
+ Label.create(tag: item, sort: index)
+end

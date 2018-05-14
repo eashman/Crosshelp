@@ -5,6 +5,7 @@ module API
       # Mount points above
       mount API::V1::Users
       mount API::V1::Upload
+      mount API::V1::Labels
     end
   end
 end

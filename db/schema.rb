@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_13_115720) do
+ActiveRecord::Schema.define(version: 2018_05_14_042036) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,13 @@ ActiveRecord::Schema.define(version: 2018_05_13_115720) do
     t.string "password_digest"
     t.string "remember_token"
     t.datetime "remember_token_expires_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "labels", force: :cascade do |t|
+    t.string "tag"
+    t.integer "sort"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
