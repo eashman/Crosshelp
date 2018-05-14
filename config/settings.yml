@@ -1,9 +1,6 @@
 rongcloud:
-  app_key:
-  app_secret:
-  host:
-  timeout:
-  debug_mode:
+  app_key: kj7swf8ok1xh2
+  app_secret: RgEfcuQjWkuJ
 
 jpush:
   appkey:
@@ -15,6 +12,8 @@ redis:
   port: 26379
   expires_in: 5400
   cache: 1
+  queue: 0
+  object_db: 3
 
 logs:
   jpush: log/jpush.log

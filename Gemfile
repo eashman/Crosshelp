@@ -51,6 +51,9 @@ gem 'rong_cloud_server'
 #cache data
 gem 'redis'
 gem 'redis-rails'
+gem 'hiredis'
+gem 'redis', require: %w(redis redis/connection/hiredis)
+gem 'redis-objects'
 #yml params
 gem 'config'
 # Use Capistrano for deployment
