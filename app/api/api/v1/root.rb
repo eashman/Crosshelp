@@ -7,6 +7,7 @@ module API
       mount API::V1::Upload
       mount API::V1::Labels
       mount API::V1::Sms
+      mount API::V1::Activities
     end
   end
 end

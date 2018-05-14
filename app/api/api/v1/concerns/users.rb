@@ -16,7 +16,7 @@ module API
             if params.type == 'wx'
               user = User.find_or_create_by(open_id: params.open_id)
             else
-              if $redis.get("_phoneCode"+ params.phone) == params.code
+              if $redis.get("_phoneCode#{params.phone}") == params.code
                 user = User.find_or_create_by(phone: params.phone)
               else
                 return wrap_meta(msg: '验证码错误')

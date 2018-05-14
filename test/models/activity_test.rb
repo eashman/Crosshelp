@@ -1,17 +1,21 @@
 # == Schema Information
 #
-# Table name: labels
+# Table name: activities
 #
 #  id         :bigint(8)        not null, primary key
-#  tag        :string
-#  sort       :integer
+#  user_id    :integer
+#  poster     :string
+#  title      :string
+#  begin_time :datetime
+#  end_time   :datetime
+#  address    :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
 require 'test_helper'
 
-class LabelTest < ActiveSupport::TestCase
+class ActivityTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
