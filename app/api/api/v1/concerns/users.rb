@@ -9,10 +9,20 @@ module API
           params do
             optional :phone, type: String, desc: '手机号码'
             optional :open_id, type: String, desc: '微信标识'
+            optional :code, type: String, desc: '验证码'
+            requires :type, type: String, values: %w(wx phone), desc: '登陆类型'
           end
           post '/users/login' do
-            create_body = declared params
-            user = ::User.create!(create_body.to_h)
+            if params.type == 'wx'
+              user = User.find_or_create_by(open_id: params.open_id)
+            else
+              if $redis.get("_phoneCode"+ params.phone) == params.code
+                user = User.find_or_create_by(phone: params.phone)
+              else
+                return wrap_meta(msg: '验证码错误')
+              end
+            end
+            user.regenerate_token
             wrap_meta(token: user.token)
           end
 

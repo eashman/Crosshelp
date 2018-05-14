@@ -1,5 +1,4 @@
 #加载oss 库 初始化连接参数
-
 require 'aliyun/oss'
 module Utils
   class Uploader
