@@ -34,6 +34,8 @@ class User < ApplicationRecord
   has_secure_token
   has_and_belongs_to_many :labels
   has_many :activities
+  has_many :posts
+  has_many :comments
   action_store :like, :post, counter_cache: true
   action_store :star, :post, counter_cache: true, user_counter_cache: true
   action_store :follow, :post

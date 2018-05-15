@@ -2,8 +2,8 @@
 module API
   module V1
     module Entities
-      class LabelList < Grape::Entity
-        expose :id,:tag,:sort
+      class PostList < Grape::Entity
+        expose :id,:title
       end
     end
   end
