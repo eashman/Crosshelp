@@ -60,6 +60,8 @@ gem 'config'
 # gem 'capistrano-rails', group: :development
 gem 'sidekiq' # async events
 
+gem 'action-store'
+
 #oss
 gem 'aliyun-sdk'
 #jpush

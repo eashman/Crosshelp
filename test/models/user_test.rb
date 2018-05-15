@@ -25,6 +25,9 @@
 #  industry         :string
 #  summary          :text
 #  business_licence :string
+#  star_posts_count :integer          default(0)
+#  followers_count  :integer          default(0)
+#  following_count  :integer          default(0)
 #
 
 require 'test_helper'
