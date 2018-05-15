@@ -27,7 +27,7 @@ set :rails_env, 'production'
 #set :shared_paths, ['config/database.yml', 'config/secrets.yml', 'log']
 
 set :shared_paths, ['config/application.yml', 'config/database.yml', 'config/secrets.yml', 'config/puma.rb',
-  'log', 'tmp/pids', 'tmp/sockets', 'docker-compose.yml','public']
+  'log', 'tmp/pids', 'tmp/sockets', 'docker-compose.yml']
 
 set :sidekiq_pid, "#{deploy_to}/#{shared_path}/tmp/pids/sidekiq.pid"
 
@@ -76,9 +76,9 @@ task deploy: :environment do
     invoke :'deploy:link_shared_paths'
     invoke :'docker:up'
     invoke :'bundle:install'
-    #invoke :'rails:db_create'
+    invoke :'rails:db_create'
     invoke :'rails:db_migrate'
-    #invoke :'npm:install'
+    invoke :'npm:install'
     invoke :'rails:assets_precompile'
 
     to :launch do
