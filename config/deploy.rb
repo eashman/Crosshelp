@@ -27,7 +27,7 @@ set :rails_env, 'production'
 #set :shared_paths, ['config/database.yml', 'config/secrets.yml', 'log']
 
 set :shared_paths, ['config/application.yml', 'config/database.yml', 'config/secrets.yml', 'config/puma.rb',
-  'log', 'tmp/pids', 'tmp/sockets', 'docker-compose.yml']
+  'log', 'tmp/pids', 'tmp/sockets', 'docker-compose.yml' ,'public']
 
 set :sidekiq_pid, "#{deploy_to}/#{shared_path}/tmp/pids/sidekiq.pid"
 
