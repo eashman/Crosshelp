@@ -78,7 +78,7 @@ task deploy: :environment do
     invoke :'bundle:install'
     invoke :'rails:db_create'
     invoke :'rails:db_migrate'
-    invoke :'npm:install'
+    #invoke :'npm:install'
     invoke :'rails:assets_precompile'
 
     to :launch do
