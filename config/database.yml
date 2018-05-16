@@ -81,6 +81,7 @@ test:
 #
 production:
   <<: *default
-  database: CrossBorderHelp_production
+  database: CrossBorderHelp_development
   username: postgres
   password: postgres
+  port: 25432
