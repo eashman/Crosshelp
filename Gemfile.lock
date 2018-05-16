@@ -128,6 +128,8 @@ GEM
       dry-equalizer (~> 0.2)
       dry-logic (~> 0.4, >= 0.4.0)
       dry-types (~> 0.12.0)
+    enumerize (2.2.2)
+      activesupport (>= 3.2)
     equalizer (0.0.11)
     erubi (1.7.1)
     execjs (2.7.0)
@@ -385,6 +387,7 @@ DEPENDENCIES
   chromedriver-helper
   coffee-rails (~> 4.2)
   config
+  enumerize
   grape (~> 0.18.0)
   grape-entity
   grape-swagger

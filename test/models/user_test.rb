@@ -28,6 +28,7 @@
 #  star_posts_count :integer          default(0)
 #  followers_count  :integer          default(0)
 #  following_count  :integer          default(0)
+#  photo            :string
 #
 
 require 'test_helper'

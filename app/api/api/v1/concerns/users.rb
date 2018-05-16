@@ -26,6 +26,16 @@ module API
             wrap_meta(token: user.token)
           end
 
+          desc '头像 [post /users/photo]'
+          params do
+             requires :photo, type: String, desc: '头像'
+          end
+          post '/users/photo' do
+            user = current_user
+            user.update!(photo: params.photo)
+            wrap_meta()
+          end
+
           desc 'vip用户申请 [PATCH /users/vip]'
           params do
             requires :job, type: Virtus::Attribute::Boolean, desc: '高管'

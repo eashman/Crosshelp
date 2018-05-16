@@ -48,6 +48,7 @@ gem 'bcrypt'
 gem 'rong_cloud_server'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
+gem 'enumerize'
 #cache data
 gem 'redis'
 gem 'redis-rails'
