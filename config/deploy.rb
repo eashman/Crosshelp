@@ -13,7 +13,7 @@ require 'mina_sidekiq/tasks'
 #   branch       - Branch name to deploy. (needed by mina/git)
 
 set :domain, '47.105.32.52'
-set :deploy_to, '/var/www/CrossBorderHelp'
+set :deploy_to, '/root/CrossBorderHelp'
 set :repository, 'git@github.com:CrossBorderHelp/CrossBorderHelp-Web.git'
 set :branch, 'master'
 set :user, 'root'
