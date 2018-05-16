@@ -9,6 +9,7 @@ module API
       mount API::V1::Sms
       mount API::V1::Activities
       mount API::V1::Posts
+      mount API::V1::Friends
     end
   end
 end

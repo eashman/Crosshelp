@@ -11,6 +11,7 @@
 #
 
 class Friend < ApplicationRecord
+  belongs_to :user
   extend Enumerize
 
   enumerize :state, in: {

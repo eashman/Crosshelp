@@ -26,11 +26,11 @@ module API
             wrap_meta(token: user.token)
           end
 
-          desc '头像 [post /users/photo]'
+          desc '头像 [PATCH /users/photo]'
           params do
              requires :photo, type: String, desc: '头像'
           end
-          post '/users/photo' do
+          patch '/users/photo' do
             user = current_user
             user.update!(photo: params.photo)
             wrap_meta()
