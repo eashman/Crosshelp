@@ -11,12 +11,14 @@ module API
           end
           post '/sms/sendcode' do
             code = rand(999999).to_s
+            p code
             phone = params.phone
             $redis.set("_phoneCode#{phone}",code);
             $redis.expire("_phoneCode#{phone}",3600);
             p $redis.get("_phoneCode#{phone}")
-            content= "{跨境帮}您的短信验证码是#{code}，请在15分钟内输入使用。超时请重新申请。"
-            result = Utils::Sms.sendCode(phone, content, "86",nil,nil)
+            templateId = "9bErYVF6k6j9PNuvojNUGf"
+            #content= "[跨境帮]您的短信验证码是#{code}，请在15分钟内输入使用。超时请重新申请。"
+            result = Utils::Sms.sendCode(phone, templateId, "86",nil,code)
           end
         end
       end
