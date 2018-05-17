@@ -11,3 +11,9 @@ TAGE = "公司整体战略,企业管理,AMAZON运营,EBAY运营,速卖通运营,
 TAGE.split(',').each_with_index do |item,index|
  Label.create(tag: item, sort: index)
 end
+
+
+job = "跨境电商,服务商,产品供应商"
+job.split(',').each_with_index do |item,index|
+ Job.create(name: item, sort: index,level: 1)
+end

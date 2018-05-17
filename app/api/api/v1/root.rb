@@ -10,6 +10,7 @@ module API
       mount API::V1::Activities
       mount API::V1::Posts
       mount API::V1::Friends
+      mount API::V1::Jobs
     end
   end
 end
