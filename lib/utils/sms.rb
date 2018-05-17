@@ -23,7 +23,7 @@ module Utils
     	rescue => e
         puts "failed #{e}"
       end
-    def self.sendCode(mobile,templateId,region,verifyId=nil,verifyCode=nil)
+    def self.sendCode(mobile,templateId,region,code)
       @appKey = Settings.rongcloud.app_key
       @secret = Settings.rongcloud.app_secret
   		if mobile.nil?
@@ -36,6 +36,10 @@ module Utils
 
   		if region.nil?
   			raise ArgumentError, ('Paramer "region" is required');
+  		end
+
+      if code.nil?
+  			raise ArgumentError, ('Paramer "code" is required');
   		end
 
   		data = Hash.new
@@ -51,10 +55,11 @@ module Utils
   			data ["region"] = region
   		end
 
-  		data ["verifyId"] = verifyId
-  		data ["verifyCode"] = verifyCode
+      if !code.nil?
+  			data ["p1"] = code
+  		end
 
-  		uri = "/sendCode.json"
+  		uri = "/sendNotify.json"
 
   		return Utils::Sms.httpPost data,uri,@appKey,@secret,"SMS"
 	  end
