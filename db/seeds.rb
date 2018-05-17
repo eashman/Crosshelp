@@ -13,7 +13,7 @@ TAGE.split(',').each_with_index do |item,index|
 end
 
 
-job = "跨境电商,服务商,产品供应商"
-job.split(',').each_with_index do |item,index|
+JOB = "跨境电商,服务商,产品供应商"
+JOB.split(',').each_with_index do |item,index|
  Job.create(name: item, sort: index,level: 1)
 end
