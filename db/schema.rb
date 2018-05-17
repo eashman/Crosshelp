@@ -74,12 +74,13 @@ ActiveRecord::Schema.define(version: 2018_05_17_133936) do
   end
 
   create_table "jobs", force: :cascade do |t|
-    t.integer "parent_id"
+    t.integer "parent_id", default: 0
     t.string "name"
-    t.integer "level"
-    t.integer "sort"
+    t.integer "level", default: 0
+    t.integer "sort", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["parent_id"], name: "index_jobs_on_parent_id"
   end
 
   create_table "labels", force: :cascade do |t|

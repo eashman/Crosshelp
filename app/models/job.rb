@@ -12,6 +12,6 @@
 #
 
 class Job < ApplicationRecord
-  belongs_to :parent, class_name: 'Job', foreign_key: 'parent_id'
+  belongs_to :parent, class_name: 'Job', foreign_key: 'parent_id', optional: true
   has_many :children, class_name: 'Job', foreign_key: 'parent_id'
 end
