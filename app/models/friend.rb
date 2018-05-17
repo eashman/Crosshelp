@@ -8,6 +8,7 @@
 #  state      :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  friend_id  :integer
 #
 
 class Friend < ApplicationRecord

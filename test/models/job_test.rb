@@ -1,19 +1,19 @@
 # == Schema Information
 #
-# Table name: friends
+# Table name: jobs
 #
 #  id         :bigint(8)        not null, primary key
-#  user_id    :integer
+#  parent_id  :integer
 #  name       :string
-#  state      :string
+#  level      :integer
+#  sort       :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  friend_id  :integer
 #
 
 require 'test_helper'
 
-class FriendTest < ActiveSupport::TestCase
+class JobTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
