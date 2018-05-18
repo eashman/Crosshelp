@@ -35,7 +35,7 @@ module API
             create_body = declared params
             circle = user.circles.find(params.id)
             friend_ids  = circle.friend_ids
-            friend_ids = friend_ids + params.friend_ids
+            friend_ids = friend_ids.concat params.friend_ids
             friend_ids.uniq!
             circle.update!(friend_ids: friend_ids)
             wrap_meta(friend_ids: friend_ids)
