@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_18_073915) do
+ActiveRecord::Schema.define(version: 2018_05_18_110921) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,13 +65,13 @@ ActiveRecord::Schema.define(version: 2018_05_18_073915) do
     t.integer "likes_count", default: 0
   end
 
-  create_table "friends", force: :cascade do |t|
+  create_table "friendships", force: :cascade do |t|
     t.integer "user_id"
+    t.integer "friend_id"
     t.string "name"
     t.string "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "friend_id"
   end
 
   create_table "jobs", force: :cascade do |t|

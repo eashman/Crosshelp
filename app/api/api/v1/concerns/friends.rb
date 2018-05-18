@@ -8,7 +8,7 @@ module API
           desc '好友列表 [GET /friends]'
           get '/friends'  do
             user = current_user
-            friends = user.friends
+            friends = user.friendships.with_state(:agree)
             wrap_meta(
               friends: friends
             )
@@ -35,21 +35,23 @@ module API
           post '/friends/apply' do
             user = current_user
             create_body = declared params
-            friend = user.friends.create!(create_body.to_h)
-            wrap_meta(friend: friend)
+            body_h = create_body.to_h
+            body_h.merge!(user_id: user.id)
+            friendship = Friendship.create!(body_h)
+            wrap_meta(friendship: friendship)
           end
 
 
           desc '同意或忽略好友 [PATCH /friends/agree]'
           params do
-            requires :id, type: String, desc: '好友ID'
+            requires :id, type: String, desc: 'ID'
             requires :state, type: String, values: %w(apply agree ignore), desc: '状态'
           end
           patch '/friends/agree' do
             user = current_user
-            friend = Friend.find(params.id)
-            friend.update!(state: params.state)
-            wrap_meta(ID: friend.id)
+            friendship = Friendship.find_by(id: params.id)
+            friendship.update!(state: params.state)
+            wrap_meta(friendship: friendship)
           end
 
           desc '同校好友列表[GET /friends/school ]'

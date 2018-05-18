@@ -17,3 +17,19 @@ JOB = "跨境电商,服务商,产品供应商"
 JOB.split(',').each_with_index do |item,index|
  Job.create(name: item, sort: index,level: 1)
 end
+
+NAMES = '赵钱孙李周吴郑王'
+def telephone
+  "136#{rand(10)}#{rand(10)}#{rand(10)}#{rand(10)}#{rand(10)}#{rand(10)}#{rand(10)}#{rand(10)}"
+end
+
+def random_word(num)
+  NAMES.split('').sample(num).join('')
+end
+
+10.times do |_i|
+  User.create!(
+    name: random_word(3),
+    phone: telephone
+  )
+end
