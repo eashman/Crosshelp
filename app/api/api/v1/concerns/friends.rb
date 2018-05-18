@@ -41,21 +41,34 @@ module API
 
           desc '同校好友列表[GET /friends/school ]'
           params do
-            requires :school, type: String, desc: '学校'
+            optional :school, type: String, desc: '学校'
           end
           get '/friends/school' do
             user = current_user
-            friends = User.where(school: user.school)
+            friends = User.where(school: user.school).to_a
+            friends = friends.delete_if {|friend| friend.id == user.id }
             wrap_meta(friends: Entities::FriendList.represent(friends).as_json)
           end
-          
+
           desc '生日好友列表[GET /friends/birthday ]'
           params do
-            requires :birthday, type: DateTime, desc: '生日'
+            optional :birthday, type: DateTime, desc: '生日'
           end
           get '/friends/birthday' do
             user = current_user
-            friends = User.where(birthday: user.birthday)
+            friends = User.where(birthday: user.birthday).to_a
+            friends = friends.delete_if {|friend| friend.id == user.id }
+            wrap_meta(friends: Entities::FriendList.represent(friends).as_json)
+          end
+
+          desc '同乡好友列表[GET /friends/city]'
+          params do
+            optional :city, type: String, desc: '市'
+          end
+          get '/friends/city' do
+            user = current_user
+            friends = User.where(city: user.city).to_a
+            friends = friends.delete_if {|friend| friend.id == user.id }
             wrap_meta(friends: Entities::FriendList.represent(friends).as_json)
           end
         end
