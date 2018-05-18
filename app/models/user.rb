@@ -38,6 +38,7 @@ class User < ApplicationRecord
   has_many :posts
   has_many :comments
   has_many :friends
+  has_many :circles
   action_store :like, :post, counter_cache: true
   action_store :star, :post, counter_cache: true, user_counter_cache: true
   action_store :follow, :post

@@ -11,6 +11,7 @@ module API
       mount API::V1::Posts
       mount API::V1::Friends
       mount API::V1::Jobs
+      mount API::V1::Circles
     end
   end
 end

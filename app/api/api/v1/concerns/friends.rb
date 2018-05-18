@@ -14,6 +14,19 @@ module API
             )
           end
 
+          desc '圈子好友 [GET /friends/circle]'
+          params do
+            requires :friend_id, type: String, desc: '圈子ID'
+          end
+          get '/friends/circle' do
+            user = current_user
+            circle = user.circles.find_by(id: params.friend_id)
+            circle_friends = user.find(circle.friend_ids)  if circle
+            wrap_meta(
+              friends: Entities::UserList.represent(circle_friends).as_json
+            )
+          end
+
           desc '申请好友 [POST /friends/apply]'
           params do
             requires :friend_id, type: String, desc: '好友ID'
