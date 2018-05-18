@@ -16,7 +16,7 @@ module API
             $redis.set("_phoneCode#{phone}",code);
             $redis.expire("_phoneCode#{phone}",3600);
             p $redis.get("_phoneCode#{phone}")
-            templateId = "9kV1C8Za4JDbXuJgnAPkOZ"
+            templateId = Settings.sms.templateId
             result = Utils::Sms.sendCode(phone, templateId, "86",code)
           end
         end
