@@ -12,6 +12,7 @@ module API
       mount API::V1::Friends
       mount API::V1::Jobs
       mount API::V1::Circles
+      mount API::V1::Groups
     end
   end
 end

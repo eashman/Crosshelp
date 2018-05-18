@@ -8,6 +8,7 @@
 #  address    :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  friend_ids :integer          default([]), is an Array
 #
 
 require 'test_helper'

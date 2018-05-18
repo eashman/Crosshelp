@@ -7,8 +7,8 @@ module API
         included do
           desc '获取提问列表 [GET /posts]'
           get '/posts'  do
-            @current_user = current_user
-            posts = @current_user.posts
+            user = current_user
+            posts = user.posts
             wrap_meta(
               posts: Entities::PostList.represent(posts).as_json
             )
@@ -20,9 +20,9 @@ module API
             requires :content,  type: String, desc: '内容'
           end
           post '/posts/new' do
-            @current_user = current_user
+            user = current_user
             create_body = declared params
-            post = @current_user.posts.create!(create_body.to_h)
+            post = user.posts.create!(create_body.to_h)
             wrap_meta(post: post)
           end
         end

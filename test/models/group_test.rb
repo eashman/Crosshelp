@@ -1,19 +1,17 @@
 # == Schema Information
 #
-# Table name: jobs
+# Table name: groups
 #
 #  id         :bigint(8)        not null, primary key
-#  parent_id  :integer          default(0)
 #  name       :string
-#  level      :integer          default(0)
-#  sort       :integer          default(0)
+#  address    :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
 require 'test_helper'
 
-class JobTest < ActiveSupport::TestCase
+class GroupTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
