@@ -5,7 +5,7 @@ module API
       module Circles
         extend ActiveSupport::Concern
         included do
-          desc '圈子 [GET /circles]'
+          desc '标签 [GET /circles]'
           get '/circles'  do
             user = current_user
             circles = user.circles
@@ -14,10 +14,9 @@ module API
             )
           end
 
-          desc '创建圈子 [POST /circles/new]'
+          desc '创建标签 [POST /circles/new]'
           params do
             requires :name, type: String, desc: '名称'
-            requires :address,  type: String, desc: '地点'
           end
           post '/circles/new' do
             user = current_user
@@ -25,7 +24,7 @@ module API
             circle = user.circles.create!(create_body.to_h)
             wrap_meta(ID: circle.id)
           end
-          desc '加入圈子 [ PATCH /circles/add]'
+          desc '加入标签 [ PATCH /circles/add]'
           params do
             requires :id, type: String, desc: 'ID'
             requires :friend_ids, type: Array[Integer], default: [], desc: '好友ID数组'
