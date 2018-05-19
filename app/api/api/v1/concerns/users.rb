@@ -17,13 +17,28 @@ module API
               user = User.find_or_create_by(open_id: params.open_id)
             else
               if $redis.get("_phoneCode#{params.phone}") == params.code
-                user = User.find_or_create_by(phone: params.phone)
+                user = User.find_by(phone: params.phone)
+                rerurn wrap_meta(msg: '未注册用户') unless user
               else
                 return wrap_meta(msg: '验证码错误')
               end
             end
             user.regenerate_token
             wrap_meta(token: user.token)
+          end
+
+          desc '注册[POST /users/register]'
+          params do
+            requires :phone, type: String, desc: '手机号码'
+            requires :code, type: String, desc: '验证码'
+          end
+          post '/users/register' do
+            if $redis.get("_phoneCode#{params.phone}") == params.code
+              user = User.find_or_create_by(phone: params.phone)
+              return wrap_meta(token: user.token)
+            else
+              return wrap_meta(msg: '验证码错误')
+            end
           end
 
           desc '头像 [PATCH /users/photo]'
@@ -41,11 +56,11 @@ module API
             requires :job, type: Virtus::Attribute::Boolean, desc: '高管'
           end
           patch '/users/vip' do
-            @current_user = current_user
-            if @current_user.job
+            user = current_user
+            if user.job
               wrap_meta(msg: '该用户已经成为Vip成功')
             else
-              @current_user.update!(job: true)
+              user.update!(job: true)
               wrap_meta(msg: '已经申请Vip')
             end
           end
@@ -55,12 +70,12 @@ module API
             requires :business_licence, type: String, desc: '营业执照'
           end
           patch '/users/corporater' do
-            @current_user = current_user
-            if @current_user.corporater
+            user = current_user
+            if user.corporater
               wrap_meta(msg: '该用户已经申请企业会员成功')
             else
-              @current_user.update!(corporater: true,
-                                    business_licence:params.business_licence)
+              user.update!(corporater: true,
+                           business_licence:params.business_licence)
               wrap_meta(msg: '申请企业会员成功')
             end
           end
@@ -73,13 +88,14 @@ module API
             optional :city, type: String, desc: '市'
             optional :school, type: String, desc: '毕业院校'
             optional :industry, type: String, desc: '行业'
+            optional :profession, type: String, desc: '职业'
             optional :summary, type: String, desc: '个人简介'
           end
           put '/users/perfect' do
-            @current_user = current_user
+            user = current_user
             create_body = declared params
-            @current_user.update!(create_body.to_h)
-            wrap_meta(token: @current_user.token)
+            user.update!(create_body.to_h)
+            wrap_meta(msg: '完善成功')
           end
 
           desc '个人信息 [get /users/show]'
