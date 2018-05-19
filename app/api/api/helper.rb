@@ -18,6 +18,11 @@ module API
       @current_user
     end
 
+    def rcservice
+      service = RongCloud::Service.new
+      return service
+    end
+
     def raven_capture(e)
       Raven.capture_exception(e, tags: { event: 'api' })
     end

@@ -13,6 +13,7 @@ module API
       mount API::V1::Jobs
       mount API::V1::Circles
       mount API::V1::Groups
+      mount API::V1::Cloud
     end
   end
 end
