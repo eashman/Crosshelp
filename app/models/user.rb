@@ -39,7 +39,7 @@ class User < ApplicationRecord
   has_many :posts
   has_many :comments
   has_many :friendships
-  has_and_belongs_to_many :friends,class_name: 'User',join_table: 'friendships',association_foreign_key: 'friend_id', foreign_key: 'user_id'
+  #has_and_belongs_to_many :friends,class_name: 'User',join_table: 'friendships',association_foreign_key: 'friend_id', foreign_key: 'user_id'
   has_many :circles
   action_store :like, :post, counter_cache: true
   action_store :star, :post, counter_cache: true, user_counter_cache: true

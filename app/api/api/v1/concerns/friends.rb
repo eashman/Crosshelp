@@ -6,11 +6,19 @@ module API
         extend ActiveSupport::Concern
         included do
           desc '好友列表 [GET /friends]'
+          params do
+            requires :id, type: String, desc: '用户ID'
+          end
           get '/friends'  do
             user = current_user
-            friends = user.friendships.with_state(:agree)
+            friend_ids = Friendship.friend_ids(params.id).to_a
+            user_ids = friend_ids.pluck(:user_id)
+            friend_ids = friend_ids.pluck(:friend_id)
+            ids = user_ids.concat friend_ids
+            ids.uniq!
+            friends = User.find(ids)
             wrap_meta(
-              friends: friends
+              friends: Entities::UserList.represent(friends).as_json
             )
           end
 

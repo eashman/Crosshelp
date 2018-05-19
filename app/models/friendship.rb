@@ -19,4 +19,8 @@ class Friendship < ApplicationRecord
     :ignore  #忽略
     ], default: :apply, predicates: {prefix: true}, scope: true
     belongs_to :user, optional: true
+
+    scope :friend_ids, -> (id) {
+      where('user_id = ? or friend_id = ? and state = ? ', id,id,'agree').select('user_id,friend_id')
+    }
 end
