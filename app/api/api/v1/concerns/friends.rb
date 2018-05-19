@@ -25,9 +25,9 @@ module API
           desc '申请好友列表 [GET /friends/apply/list]'
           get '/friends/apply/list' do
             user = current_user
-            friends = user.friends
+            friends = Friendship.find_by(user_id: user.id)
             wrap_meta(
-              friends: Entities::UserList.represent(friends).as_json
+              friends: Entities::FriendshipList.represent(friends).as_json
             )
           end
 
@@ -47,6 +47,7 @@ module API
           desc '申请好友 [POST /friends/apply]'
           params do
             requires :friend_id, type: String, desc: '好友ID'
+            requires :name, type: String, desc: '名字'
           end
           post '/friends/apply' do
             user = current_user
