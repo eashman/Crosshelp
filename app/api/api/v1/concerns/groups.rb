@@ -34,17 +34,25 @@ module API
             user = current_user
             create_body = declared params
             group = user.groups.create!(create_body.to_h)
-            wrap_meta(group: group)
+            #创建群组方法#
+            result = rcservice.create_group(user.id,group.id,group.name)
+            wrap_meta(result: result)
           end
 
           desc '加入圈子[ POST /groups/add]'
           params do
-            requires :group_id, type: String, desc: '圈子ID'
+            optional :userId, type: String, desc: '用户Id'
+            requires :groupId, type: String, desc: '圈子Id'
+            requires :groupName, type: String, desc: '圈子名称'
           end
           post '/groups/add' do
             user = current_user
-            user_group = UserGroup.create!(user_id: user.id,group_id: params.group_id)
-            wrap_meta(msg: '加入成功')
+            group = Group.find_by(id: params.groupId)
+            #user = User.find_by(id: params.userId)
+            group.users << user
+            #加入群组方法#
+            result = rcservice.join_group(user.id,params.groupId,params.groupName)
+            wrap_meta(result: result)
           end
         end
       end
