@@ -7,16 +7,25 @@ module API
         included do
           desc '好友列表 [GET /friends]'
           params do
-            requires :id, type: String, desc: '用户ID'
+            optional :id, type: String, desc: '用户ID'
           end
           get '/friends'  do
             user = current_user
-            friend_ids = Friendship.friend_ids(params.id).to_a
+            friend_ids = Friendship.friend_ids(user.id).to_a
             user_ids = friend_ids.pluck(:user_id)
             friend_ids = friend_ids.pluck(:friend_id)
             ids = user_ids.concat friend_ids
             ids.uniq!
             friends = User.find(ids)
+            wrap_meta(
+              friends: Entities::UserList.represent(friends).as_json
+            )
+          end
+
+          desc '申请好友列表 [GET /friends/apply/list]'
+          get '/friends/apply/list' do
+            user = current_user
+            friends = user.friends
             wrap_meta(
               friends: Entities::UserList.represent(friends).as_json
             )
@@ -38,7 +47,6 @@ module API
           desc '申请好友 [POST /friends/apply]'
           params do
             requires :friend_id, type: String, desc: '好友ID'
-            requires :name, type: String, desc: '好友名字'
           end
           post '/friends/apply' do
             user = current_user
