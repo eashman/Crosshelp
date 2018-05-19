@@ -13,5 +13,8 @@ module Utils
       def self.bucket
           @bucket = Utils::Uploader.client.get_bucket(Settings.aliyun.bucket)
       end
+      def self.pubbucket
+          @bucket = Utils::Uploader.client.get_bucket(Settings.aliyun.pubbucket)
+      end
   end
 end

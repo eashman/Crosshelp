@@ -22,7 +22,9 @@ aliyun:
   access_key_id: LTAIXiGggqWgevcM
   access_key_secret: CWJDxUrWR9fwI4qVlLjBYFCQij5xuF
   bucket: kuajinghelp
+  pubbucket: pubkuajinghelp
   endpoint: oss-cn-beijing.aliyuncs.com
+  pubhost: pubkuajinghelp.oss-cn-beijing.aliyuncs.com
 
 sms:
   templateId: 8WyOSqZyQRgaxvyKpo4Ui0
