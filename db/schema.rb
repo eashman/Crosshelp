@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_20_103417) do
+ActiveRecord::Schema.define(version: 2018_05_20_124505) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -141,14 +141,11 @@ ActiveRecord::Schema.define(version: 2018_05_20_103417) do
     t.string "token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "viper", default: false
-    t.boolean "corporater", default: false
     t.boolean "job", default: false
     t.string "profession"
     t.integer "vipercount", default: 2
     t.string "badge"
     t.string "company"
-    t.boolean "authentication", default: false
     t.string "sex"
     t.date "birthday"
     t.string "province"
@@ -163,6 +160,11 @@ ActiveRecord::Schema.define(version: 2018_05_20_103417) do
     t.string "photo"
     t.string "card"
     t.integer "company_id"
+    t.string "viper", default: "normal"
+    t.string "corporater", default: "normal"
+    t.string "authentication", default: "normal"
+    t.string "holdoffice"
+    t.string "remark"
     t.index ["open_id"], name: "index_users_on_open_id"
     t.index ["phone"], name: "index_users_on_phone"
     t.index ["token"], name: "index_users_on_token"

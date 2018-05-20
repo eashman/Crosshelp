@@ -9,14 +9,11 @@
 #  token            :string
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
-#  viper            :boolean          default(FALSE)
-#  corporater       :boolean          default(FALSE)
 #  job              :boolean          default(FALSE)
 #  profession       :string
 #  vipercount       :integer          default(2)
 #  badge            :string
 #  company          :string
-#  authentication   :boolean          default(FALSE)
 #  sex              :string
 #  birthday         :date
 #  province         :string
@@ -31,6 +28,11 @@
 #  photo            :string
 #  card             :string
 #  company_id       :integer
+#  viper            :string           default("normal")
+#  corporater       :string           default("normal")
+#  authentication   :string           default("normal")
+#  holdoffice       :string
+#  remark           :string
 #
 
 class User < ApplicationRecord
@@ -44,6 +46,24 @@ class User < ApplicationRecord
   belongs_to :company, optional: true
   has_and_belongs_to_many :friends,class_name: 'User',join_table: 'friendships',association_foreign_key: 'friend_id', foreign_key: 'user_id'
   has_many :circles
+  enumerize :viper, in: [
+    :normal, #未申请
+    :apply,  #申请
+    :agree,  #同意
+    :ignore  #忽略
+    ], default: :apply, predicates: {prefix: true}, scope: true
+  enumerize :corporater, in: [
+    :normal, #未申请
+    :apply,  #申请
+    :agree,  #同意
+    :ignore  #忽略
+    ], default: :apply, predicates: {prefix: true}, scope: true
+  enumerize :authentication, in: [
+    :normal, #未申请
+    :apply,  #申请
+    :agree,  #同意
+    :ignore  #忽略
+    ], default: :apply, predicates: {prefix: true}, scope: true
   action_store :like, :post, counter_cache: true
   action_store :star, :post, counter_cache: true, user_counter_cache: true
   action_store :follow, :post

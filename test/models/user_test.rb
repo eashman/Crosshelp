@@ -9,14 +9,11 @@
 #  token            :string
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
-#  viper            :boolean          default(FALSE)
-#  corporater       :boolean          default(FALSE)
 #  job              :boolean          default(FALSE)
 #  profession       :string
 #  vipercount       :integer          default(2)
 #  badge            :string
 #  company          :string
-#  authentication   :boolean          default(FALSE)
 #  sex              :string
 #  birthday         :date
 #  province         :string
@@ -31,6 +28,11 @@
 #  photo            :string
 #  card             :string
 #  company_id       :integer
+#  viper            :string           default("normal")
+#  corporater       :string           default("normal")
+#  authentication   :string           default("normal")
+#  holdoffice       :string
+#  remark           :string
 #
 
 require 'test_helper'

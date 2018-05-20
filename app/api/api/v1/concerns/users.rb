@@ -14,7 +14,7 @@ module API
           end
           post '/users/login' do
             if params.type == 'wx'
-              user = User.find_or_create_by(open_id: params.open_id)
+              user = User.find_by(open_id: params.open_id)
             else
               if $redis.get("_phoneCode#{params.phone}") == params.code
                 user = User.find_by(phone: params.phone)
@@ -27,12 +27,49 @@ module API
             wrap_meta(token: user.token)
           end
 
-          desc '注册[POST /users/register]'
+          desc '微信注册 [POST /users/wx/register]'
+          params do
+            requires :open_id, type: String, desc: '微信标识'
+            requires :nickname, type: String, desc: '名称'
+            requires :headimgurl, type: String, desc: '名称'
+            requires :sex, type: String, desc: '名称'
+          end
+          post '/users/wx/register' do
+            user = User.find_or_create_by(open_id: params.open_id)
+            user.name = params.name if user.name.nil?
+            user.photo = params.headimgurl if user.photo.nil?
+            user.sex = params.sex if user.sex.nil?
+            user.save!
+            user.regenerate_token
+            wrap_meta(token: user.token)
+          end
+
+          desc '微信绑定手机号[POST /users/wx/bind/phone]'
+          params do
+            requires :phone, type: String, desc: '手机号码'
+            requires :open_id, type: String, desc: '微信标识'
+            requires :code, type: String, desc: '验证码'
+          end
+          post '/users/wx/bind/phone' do
+            if $redis.get("_phoneCode#{params.phone}") == params.code
+              user = User.find_by(open_id: params.open_id)
+              if user
+                user.update!(phone: params.phone)
+                return wrap_meta(msg: '绑定手机号码成功!')
+              else
+                return wrap_meta(msg: '未找到openid对应的用户')
+              end
+            else
+              return wrap_meta(msg: '验证码错误')
+            end
+          end
+
+          desc '手机号码注册[POST /users/phone/register]'
           params do
             requires :phone, type: String, desc: '手机号码'
             requires :code, type: String, desc: '验证码'
           end
-          post '/users/register' do
+          post '/users/phone/register' do
             if $redis.get("_phoneCode#{params.phone}") == params.code
               user = User.find_or_create_by(phone: params.phone)
               return wrap_meta(token: user.token)
@@ -55,10 +92,12 @@ module API
           params do
             optional :badge, type: String, desc: '工牌'
             optional :card, type: String, desc: '名片'
+            requires :viper, type: String, values: %w(normal apply), default: 'normal',desc: '状态'
           end
           post '/users/vip' do
             user = current_user
-            user.update!(badge: params.badge,card: params.card)
+            create_body = declared params
+            user.update!(create_body.to_h)
             wrap_meta(msg: '已提交后台审核')
           end
 
@@ -69,9 +108,11 @@ module API
             optional :province, type: String, desc: '省'
             optional :city, type: String, desc: '市'
             optional :school, type: String, desc: '毕业院校'
-            optional :industry, type: String, desc: '行业'
-            optional :profession, type: String, desc: '职业'
+            requires :industry, type: String, desc: '行业'
+            requires :profession, type: String, desc: '职业'
             optional :summary, type: String, desc: '个人简介'
+            optional :holdoffice, type: String, desc: '担任职位'
+            optional :remark, type: String, desc: '备注'
             requires :company, type: Hash do
               requires :name, type: String, desc: '公司名称'
             end

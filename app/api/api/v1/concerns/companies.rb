@@ -18,7 +18,7 @@ module API
           post '/companies/perfect' do
             user = current_user
             create_body = declared params
-            if user.corporater
+            if user.corporater == 'agree'
               wrap_meta(msg: '该企业已经认证成功，信息禁止修改')
             else
              company = user.company.update!(create_body.to_h)
@@ -31,12 +31,13 @@ module API
             requires :logo,  type: String, desc: 'logo'
             requires :industry,  type: String, desc: '行业'
             requires :business_licence, type: String, desc: '营业执照'
+            requires :corporater, type: String, values: %w(normal apply), default: 'normal',desc: '状态'
           end
           patch '/users/corporater' do
             user = current_user
             create_body = declared params
-            if user.corporater
-              wrap_meta(msg: '该用户已经认证成功')
+            if user.corporater == 'agree'
+              wrap_meta(msg: '该公司已经认证成功')
             else
               user.company.update!(create_body.to_h)
               wrap_meta(msg: '已提交后台审核')
