@@ -18,8 +18,42 @@ module API
           post '/companies/perfect' do
             user = current_user
             create_body = declared params
-            company = user.company.update!(create_body.to_h)
-            wrap_meta(company: company)
+            if user.corporater
+              wrap_meta(msg: '该企业已经认证成功，信息禁止修改')
+            else
+             company = user.company.update!(create_body.to_h)
+             wrap_meta(company: company)
+           end
+          end
+
+          desc '申请认证企业 [PATCH /companies/corporater]'
+          params do
+            requires :logo,  type: String, desc: 'logo'
+            requires :industry,  type: String, desc: '行业'
+            requires :business_licence, type: String, desc: '营业执照'
+          end
+          patch '/users/corporater' do
+            user = current_user
+            create_body = declared params
+            if user.corporater
+              wrap_meta(msg: '该用户已经认证成功')
+            else
+              user.company.update!(create_body.to_h)
+              wrap_meta(msg: '已提交后台审核')
+            end
+          end
+
+          desc '认证企业的员工列表 [GET /companies/users/list]'
+          params do
+            requires :companyId,  type: String, desc: '企业ID'
+          end
+          get '/companies/users/list' do
+            user = current_user
+            company = Company.find_by(id: params.companyId)
+            users = company.users.where('users.corporater = true') if company
+            wrap_meta(
+              users: Entities::UserList.represent(users).as_json
+            )
           end
         end
       end

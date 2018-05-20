@@ -3,7 +3,6 @@
 # Table name: companies
 #
 #  id         :bigint(8)        not null, primary key
-#  user_id    :integer
 #  name       :string
 #  summary    :text
 #  logo       :string

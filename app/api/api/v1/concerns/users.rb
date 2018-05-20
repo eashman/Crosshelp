@@ -62,22 +62,6 @@ module API
             wrap_meta(msg: '已提交后台审核')
           end
 
-
-          desc '申请企业会员 [PATCH /users/corporater]'
-          params do
-            requires :business_licence, type: String, desc: '营业执照'
-          end
-          patch '/users/corporater' do
-            user = current_user
-            if user.corporater
-              wrap_meta(msg: '该用户已经申请企业会员成功')
-            else
-              user.update!(corporater: true,
-                           business_licence:params.business_licence)
-              wrap_meta(msg: '申请企业会员成功')
-            end
-          end
-
           desc '完善个人信息 [PUT /users/perfect]'
           params do
             optional :sex, type: String, desc: '性别'
@@ -96,7 +80,11 @@ module API
             user = current_user
             create_body = declared params
             user.update!(create_body.to_h)
-            user.build_company(name: params.company.name)
+            if user.corporater
+              wrap_meta(msg: '企业已认证名称禁止修改!')
+            else
+              user.build_company(name: params.company.name)
+            end
             wrap_meta(msg: '完善成功')
           end
 

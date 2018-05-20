@@ -30,6 +30,7 @@
 #  following_count  :integer          default(0)
 #  photo            :string
 #  card             :string
+#  company_id       :integer
 #
 
 require 'test_helper'
