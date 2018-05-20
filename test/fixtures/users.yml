@@ -29,6 +29,7 @@
 #  followers_count  :integer          default(0)
 #  following_count  :integer          default(0)
 #  photo            :string
+#  card             :string
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

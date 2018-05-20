@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_18_144335) do
+ActiveRecord::Schema.define(version: 2018_05_20_073453) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,23 @@ ActiveRecord::Schema.define(version: 2018_05_18_144335) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "likes_count", default: 0
+  end
+
+  create_table "companies", force: :cascade do |t|
+    t.string "name"
+    t.text "summary"
+    t.string "logo"
+    t.string "address"
+    t.string "industry"
+    t.string "website"
+    t.string "mailbox"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "companies_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "company_id", null: false
   end
 
   create_table "friendships", force: :cascade do |t|
@@ -149,6 +166,7 @@ ActiveRecord::Schema.define(version: 2018_05_18_144335) do
     t.integer "followers_count", default: 0
     t.integer "following_count", default: 0
     t.string "photo"
+    t.string "card"
     t.index ["open_id"], name: "index_users_on_open_id"
     t.index ["phone"], name: "index_users_on_phone"
     t.index ["token"], name: "index_users_on_token"

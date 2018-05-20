@@ -14,6 +14,7 @@ module API
       mount API::V1::Circles
       mount API::V1::Groups
       mount API::V1::Cloud
+      mount API::V1::Companies
     end
   end
 end

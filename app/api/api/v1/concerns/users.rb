@@ -51,19 +51,17 @@ module API
             wrap_meta()
           end
 
-          desc 'vip用户申请 [PATCH /users/vip]'
+          desc 'vip用户认证 [POST /users/vip]'
           params do
-            requires :job, type: Virtus::Attribute::Boolean, desc: '高管'
+            optional :badge, type: String, desc: '工牌'
+            optional :card, type: String, desc: '名片'
           end
-          patch '/users/vip' do
+          post '/users/vip' do
             user = current_user
-            if user.job
-              wrap_meta(msg: '该用户已经成为Vip成功')
-            else
-              user.update!(job: true)
-              wrap_meta(msg: '已经申请Vip')
-            end
+            user.update!(badge: params.badge,card: params.card)
+            wrap_meta(msg: '已提交后台审核')
           end
+
 
           desc '申请企业会员 [PATCH /users/corporater]'
           params do
