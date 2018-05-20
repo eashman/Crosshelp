@@ -88,11 +88,15 @@ module API
             optional :industry, type: String, desc: '行业'
             optional :profession, type: String, desc: '职业'
             optional :summary, type: String, desc: '个人简介'
+            requires :company, type: Hash do
+              requires :name, type: String, desc: '公司名称'
+            end
           end
           put '/users/perfect' do
             user = current_user
             create_body = declared params
             user.update!(create_body.to_h)
+            user.build_company(name: params.company.name)
             wrap_meta(msg: '完善成功')
           end
 

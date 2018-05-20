@@ -18,7 +18,7 @@ module API
           post '/companies/perfect' do
             user = current_user
             create_body = declared params
-            company = user.companies.create!(create_body.to_h)
+            company = user.company.update!(create_body.to_h)
             wrap_meta(company: company)
           end
         end

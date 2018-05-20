@@ -3,6 +3,7 @@
 # Table name: companies
 #
 #  id         :bigint(8)        not null, primary key
+#  user_id    :integer
 #  name       :string
 #  summary    :text
 #  logo       :string
@@ -15,5 +16,5 @@
 #
 
 class Company < ApplicationRecord
-  has_and_belongs_to_many :users
+  belongs_to :user
 end

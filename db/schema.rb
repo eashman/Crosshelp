@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_20_073453) do
+ActiveRecord::Schema.define(version: 2018_05_20_072556) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2018_05_20_073453) do
   end
 
   create_table "companies", force: :cascade do |t|
+    t.integer "user_id"
     t.string "name"
     t.text "summary"
     t.string "logo"
@@ -75,11 +76,7 @@ ActiveRecord::Schema.define(version: 2018_05_20_073453) do
     t.string "mailbox"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "companies_users", id: false, force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "company_id", null: false
+    t.index ["user_id"], name: "index_companies_on_user_id"
   end
 
   create_table "friendships", force: :cascade do |t|
