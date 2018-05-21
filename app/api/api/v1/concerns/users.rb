@@ -24,7 +24,7 @@ module API
               end
             end
             user.regenerate_token
-            wrap_meta(token: user.token)
+            wrap_meta(user: user)
           end
 
           desc '微信注册 [POST /users/wx/register]'
@@ -103,21 +103,30 @@ module API
 
           desc '完善个人信息 [PUT /users/perfect]'
           params do
+            requires :name, type: String, desc: '名字'
+            requires :industry, type: String, desc: '行业'
+            requires :profession, type: String, desc: '职业'
+          end
+          put '/users/perfect' do
+            user = current_user
+            create_body = declared params
+            user.update!(create_body.to_h)
+            wrap_meta()
+          end
+
+          desc '编辑个人信息 [PUT /users/edit]'
+          params do
             optional :sex, type: String, desc: '性别'
             optional :birthday, type: String, desc: '出生日期'
             optional :province, type: String, desc: '省'
             optional :city, type: String, desc: '市'
             optional :school, type: String, desc: '毕业院校'
-            requires :industry, type: String, desc: '行业'
-            requires :profession, type: String, desc: '职业'
             optional :summary, type: String, desc: '个人简介'
-            optional :holdoffice, type: String, desc: '担任职位'
-            optional :remark, type: String, desc: '备注'
             requires :company, type: Hash do
               requires :name, type: String, desc: '公司名称'
             end
           end
-          put '/users/perfect' do
+          put '/users/edit' do
             user = current_user
             create_body = declared params
             user.update!(create_body.to_h)

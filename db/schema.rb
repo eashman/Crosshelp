@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_20_124505) do
+ActiveRecord::Schema.define(version: 2018_05_21_054639) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -165,6 +165,7 @@ ActiveRecord::Schema.define(version: 2018_05_20_124505) do
     t.string "authentication", default: "normal"
     t.string "holdoffice"
     t.string "remark"
+    t.string "imtoken"
     t.index ["open_id"], name: "index_users_on_open_id"
     t.index ["phone"], name: "index_users_on_phone"
     t.index ["token"], name: "index_users_on_token"

@@ -36,6 +36,7 @@
 #
 
 class User < ApplicationRecord
+  extend Enumerize
   has_secure_token
   has_and_belongs_to_many :labels
   has_and_belongs_to_many :groups

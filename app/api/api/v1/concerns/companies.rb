@@ -56,6 +56,21 @@ module API
               users: Entities::UserList.represent(users).as_json
             )
           end
+
+
+          desc '编辑员工信息 [PUT /companies/users/perfect]'
+          params do
+            requires :userId, type: String, desc: '员工ID'
+            requires :holdoffice, type: String, desc: '担任职位'
+            requires :remark, type: String, desc: '备注'
+          end
+          put '/companies/users/perfect' do
+            user = current_user
+            create_body = declared params
+            staff = User.find_by(id: params.userId)
+            staff.update!(create_body.to_h)
+            wrap_meta(staff: staff)
+          end
         end
       end
     end

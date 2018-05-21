@@ -12,8 +12,15 @@ module API
             optional :photo, type: String, desc: '头像'
           end
           post '/rongcloud/user/getToken' do
+            user = User.find_by(id: params.id)
             result = rcservice.get_token(params.id,params.name,params.photo)
-            wrap_meta(result: result)
+            p result.fetch('token')
+            if user
+              user.update!(imtoken:result.fetch('token') )
+              wrap_meta(result: result)
+            else
+              wrap_meta('ID不存在该用户')
+            end
           end
 
           desc '检查用户在线状态方法 [POST /rongcloud/user/checkOnline]'
