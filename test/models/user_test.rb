@@ -33,6 +33,8 @@
 #  authentication   :string           default("normal")
 #  holdoffice       :string
 #  remark           :string
+#  imtoken          :string
+#  balance          :decimal(6, 2)
 #
 
 require 'test_helper'

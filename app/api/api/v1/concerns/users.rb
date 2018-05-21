@@ -101,6 +101,44 @@ module API
             wrap_meta(msg: '已提交后台审核')
           end
 
+          desc '用户申请企业管理员 [POST /users/authentication]'
+          post '/users/authentication' do
+            user = current_user
+          end
+
+          desc '企业管理员增加员工vip [POST /users/viper/add]'
+          params do
+            requires :userId, type: String, desc: '员工ID'
+          end
+          post '/users/viper/add' do
+            user = current_user
+            count = user.vipercount
+            if user.authentication == 'success' and user.vipercount > 0
+              staff = User.find_by(id: params.userId)
+              staff.update!(viper: 'agree')
+              count = count - 1
+              user.update!(vipercount: count)
+              wrap_meta(msg: '成功')
+            else
+              wrap_meta(msg: '你未是企业管理员')
+            end
+          end
+
+          desc '转让管理员权限 [PATCH /users/authentication/assignment]'
+          params do
+            requires :userId, type: String, desc: '员工ID'
+          end
+          patch '/users/authentication/assignment' do
+            user = current_user
+            if user.authentication == 'success'
+              staff = User.find_by(id: params.userId)
+              staff.update!(authentication: 'success')
+              user.update!(authentication: 'normal')
+            else
+              wrap_meta(msg: '你未是企业管理员')
+            end
+          end
+
           desc '完善个人信息 [PUT /users/perfect]'
           params do
             requires :name, type: String, desc: '名字'
