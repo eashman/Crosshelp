@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_21_094804) do
+ActiveRecord::Schema.define(version: 2018_05_21_103754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -122,6 +122,17 @@ ActiveRecord::Schema.define(version: 2018_05_21_094804) do
     t.bigint "label_id", null: false
     t.index ["label_id", "user_id"], name: "index_labels_users_on_label_id_and_user_id"
     t.index ["user_id", "label_id"], name: "index_labels_users_on_user_id_and_label_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "name"
+    t.datetime "paytime"
+    t.string "state", default: "created"
+    t.decimal "sum", precision: 6, scale: 2
+    t.decimal "factsum", precision: 6, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "posts", force: :cascade do |t|
