@@ -37,6 +37,7 @@
 
 class User < ApplicationRecord
   extend Enumerize
+  searchkick callbacks: :async, text_middle: [:name, :phone]
   has_secure_token
   has_and_belongs_to_many :labels
   has_and_belongs_to_many :groups

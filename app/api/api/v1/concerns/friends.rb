@@ -21,6 +21,16 @@ module API
               friends: Entities::UserList.represent(friends).as_json
             )
           end
+          desc 'search好友 [GET /friends/search]'
+          params do
+            optional :q, type: String,desc: '手机号码或者名字'
+          end
+          get '/friends/search' do
+            users = User.search(params.q, fields: [:name,:phone], match: :text_middle).results
+            wrap_meta(
+              users: Entities::UserList.represent(users).as_json
+            )
+          end
 
           desc '申请好友列表 [GET /friends/apply/list]'
           get '/friends/apply/list' do

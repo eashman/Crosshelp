@@ -79,6 +79,7 @@ task deploy: :environment do
     invoke :'rails:db_create'
     invoke :'rails:db_migrate'
     #invoke :'npm:install'
+    #invoke :'searchkick:reindex'
     invoke :'rails:assets_precompile'
 
     to :launch do
@@ -96,6 +97,14 @@ namespace :npm do
     queue 'npm install'
   end
 end
+
+namespace :searchkick do
+  desc 'searchkick:reindex'
+  task reindex: :environment do
+    queue 'rake searchkick:reindex CLASS=User'
+  end
+end
+
 
 namespace :docker do
   set :compose_file, "#{deploy_to}/#{shared_path}/docker-compose.yml"

@@ -26,6 +26,9 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+# Elasticsearch
+gem 'searchkick', '1.3.4'
+gem 'kaminari'
 #api框架
 gem 'grape', '~> 0.18.0'
 gem 'grape-entity'
