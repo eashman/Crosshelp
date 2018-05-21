@@ -131,7 +131,9 @@ module API
           patch '/users/authentication/assignment' do
             user = current_user
             if user.authentication == 'success'
-              staff = User.find_by(id: params.userId)
+              company = user.company
+              staff = company.users.find_by(id: params.userId)
+              return wrap_meta(msg: '该公司不存在该员工') unless staff
               staff.update!(authentication: 'success')
               user.update!(authentication: 'normal')
             else

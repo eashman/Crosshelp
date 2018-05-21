@@ -1,7 +1,7 @@
 Trestle.resource(:administrators, model: Trestle.config.auth.user_class, scope: Auth) do
   menu do
     group :configuration, priority: :last do
-      item :administrators, icon: "fa fa-users"
+      item :administrators, icon: "fa fa-users",label: '管理员'
     end
   end
 
@@ -17,7 +17,7 @@ Trestle.resource(:administrators, model: Trestle.config.auth.user_class, scope: 
 
   form do |administrator|
     text_field :email
-    
+
     row do
       col(sm: 6) { password_field :password }
       col(sm: 6) { password_field :password_confirmation }
