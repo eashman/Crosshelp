@@ -79,7 +79,7 @@ task deploy: :environment do
     invoke :'rails:db_create'
     invoke :'rails:db_migrate'
     #invoke :'npm:install'
-    #invoke :'searchkick:reindex'
+    invoke :'searchkick:reindex'
     invoke :'rails:assets_precompile'
 
     to :launch do
