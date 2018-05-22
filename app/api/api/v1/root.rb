@@ -15,6 +15,7 @@ module API
       mount API::V1::Groups
       mount API::V1::Cloud
       mount API::V1::Companies
+      mount API::V1::Cproperties
     end
   end
 end

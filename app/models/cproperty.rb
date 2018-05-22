@@ -10,5 +10,6 @@
 #
 
 class Cproperty < ApplicationRecord
+  validates :keyname, presence: true,uniqueness: true
   has_many :enters
 end

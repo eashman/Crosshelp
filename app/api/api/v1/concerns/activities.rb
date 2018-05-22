@@ -7,8 +7,8 @@ module API
         included do
           desc '获取活动 [GET /activities]'
           get '/activities'  do
-            @current_user = current_user
-            activities = @current_user.activities
+            user = current_user
+            activities = user.activities
             wrap_meta(
               activities: Entities::ActivityList.represent(activities).as_json
             )
@@ -23,9 +23,9 @@ module API
             requires :end_time,    type: DateTime, desc: '活动结束时间'
           end
           post '/activities/new' do
-            @current_user = current_user
+            user = current_user
             create_body = declared params
-            activity = @current_user.activities.create!(create_body.to_h)
+            activity = user.activities.create!(create_body.to_h)
             wrap_meta(activity: activity)
           end
         end
