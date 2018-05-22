@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_22_072603) do
+ActiveRecord::Schema.define(version: 2018_05_22_110523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(version: 2018_05_22_072603) do
     t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "body"
+    t.datetime "deadline"
   end
 
   create_table "activityfees", force: :cascade do |t|
@@ -93,6 +95,29 @@ ActiveRecord::Schema.define(version: 2018_05_22_072603) do
     t.string "industry"
     t.string "website"
     t.string "mailbox"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "cproperties", force: :cascade do |t|
+    t.string "keyname"
+    t.string "keytype"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "enterkeys", force: :cascade do |t|
+    t.string "fkey"
+    t.string "ftype"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "enters", force: :cascade do |t|
+    t.integer "activity_id"
+    t.integer "enterkey_id"
+    t.integer "entervalue_id"
+    t.datetime "over_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

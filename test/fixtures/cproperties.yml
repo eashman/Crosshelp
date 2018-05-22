@@ -1,18 +1,12 @@
 # == Schema Information
 #
-# Table name: activities
+# Table name: cproperties
 #
 #  id         :bigint(8)        not null, primary key
-#  user_id    :integer
-#  poster     :string
-#  title      :string
-#  begin_time :datetime
-#  end_time   :datetime
-#  address    :string
+#  keyname    :string
+#  keytype    :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  body       :string
-#  deadline   :datetime
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

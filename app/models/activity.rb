@@ -11,9 +11,12 @@
 #  address    :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  body       :string
+#  deadline   :datetime
 #
 
 class Activity < ApplicationRecord
   belongs_to :user
   has_many :activityfees
+  has_many :enters
 end

@@ -11,6 +11,8 @@
 #  address    :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  body       :string
+#  deadline   :datetime
 #
 
 require 'test_helper'
