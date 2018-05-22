@@ -79,7 +79,7 @@ task deploy: :environment do
     invoke :'rails:db_create'
     invoke :'rails:db_migrate'
     #invoke :'npm:install'
-    invoke :'searchkick:reindex'
+    #invoke :'searchkick:reindex'
     invoke :'rails:assets_precompile'
 
     to :launch do
@@ -103,18 +103,6 @@ namespace :searchkick do
   task reindex: :environment do
     queue 'rake searchkick:reindex CLASS=User'
   end
-end
-
-#初始化数据
-desc "Seed data to the database"
-task :rails_db_seed do
-    command "bundle exec rake db:seed RAILS_ENV=production"
-end
-
-#删除数据库
-desc "Drop database"
-task :rails_db_drop do
-    command "bundle exec rake db:drop RAILS_ENV=production"
 end
 
 
