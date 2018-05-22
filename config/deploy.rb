@@ -105,6 +105,20 @@ namespace :searchkick do
   end
 end
 
+namespace :db do
+  desc 'db:drop'
+  task drop: :environment do
+    queue 'rake db:drop'
+  end
+end
+
+namespace :db do
+  desc 'db:seed'
+  task drop: :environment do
+    queue 'rake db:seed'
+  end
+end
+
 
 namespace :docker do
   set :compose_file, "#{deploy_to}/#{shared_path}/docker-compose.yml"
