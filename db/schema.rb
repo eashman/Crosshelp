@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_22_110523) do
+ActiveRecord::Schema.define(version: 2018_05_22_142307) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 2018_05_22_110523) do
     t.datetime "updated_at", null: false
     t.string "body"
     t.datetime "deadline"
+    t.integer "cpropertyids", default: [], array: true
+    t.integer "itemids", default: [], array: true
   end
 
   create_table "activityfees", force: :cascade do |t|
@@ -106,18 +108,12 @@ ActiveRecord::Schema.define(version: 2018_05_22_110523) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "enterkeys", force: :cascade do |t|
-    t.string "fkey"
-    t.string "ftype"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "enters", force: :cascade do |t|
     t.integer "activity_id"
-    t.integer "enterkey_id"
-    t.integer "entervalue_id"
-    t.datetime "over_time"
+    t.json "content", default: {}
+    t.string "name"
+    t.string "phone"
+    t.string "job"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -143,6 +139,15 @@ ActiveRecord::Schema.define(version: 2018_05_22_110523) do
     t.bigint "group_id", null: false
     t.index ["group_id", "user_id"], name: "index_groups_users_on_group_id_and_user_id"
     t.index ["user_id", "group_id"], name: "index_groups_users_on_user_id_and_group_id"
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.integer "parent_id", default: 0
+    t.string "name"
+    t.integer "level", default: 0
+    t.integer "sort", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "jobs", force: :cascade do |t|
@@ -223,6 +228,7 @@ ActiveRecord::Schema.define(version: 2018_05_22_110523) do
     t.string "remark"
     t.string "imtoken"
     t.decimal "balance", precision: 6, scale: 2
+    t.integer "activityids", default: [], array: true
     t.index ["open_id"], name: "index_users_on_open_id"
     t.index ["phone"], name: "index_users_on_phone"
     t.index ["token"], name: "index_users_on_token"

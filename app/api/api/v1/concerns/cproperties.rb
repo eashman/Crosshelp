@@ -14,7 +14,7 @@ module API
             user = current_user
             create_body = declared params
             cproperty = Cproperty.create!(create_body.to_h)
-            wrap_meta(cproperty: cproperty)
+            wrap_meta(id: cproperty.id)
           end
         end
       end
