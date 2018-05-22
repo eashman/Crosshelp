@@ -105,18 +105,16 @@ namespace :searchkick do
   end
 end
 
-namespace :db do
-  desc 'db:drop'
-  task drop: :environment do
-    queue 'rake db:drop'
-  end
+#初始化数据
+desc "Seed data to the database"
+task :rails_db_seed do
+    command "bundle exec rake db:seed RAILS_ENV=production"
 end
 
-namespace :db do
-  desc 'db:seed'
-  task drop: :environment do
-    queue 'rake db:seed'
-  end
+#删除数据库
+desc "Drop database"
+task :rails_db_drop do
+    command "bundle exec rake db:drop RAILS_ENV=production"
 end
 
 
