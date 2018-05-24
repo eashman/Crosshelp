@@ -35,7 +35,7 @@ module API
           get '/enters/list' do
             user = current_user
             activity = Activity.find_by(id: params.activity_id)
-            enters = activity.enters
+            enters = activity.enters if activity
             wrap_meta(
               enters: Entities::EnterList.represent(enters).as_json
             )

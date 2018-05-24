@@ -101,10 +101,20 @@ end
 namespace :searchkick do
   desc 'searchkick:reindex'
   task reindex: :environment do
-    queue 'rake searchkick:reindex CLASS=User'
+    command 'bundle exec rake searchkick:reindex CLASS=User RAILS_ENV=production'
   end
 end
 
+namespace :db do
+  desc "Seed data to the database"
+  task seed: :environment do
+      command "bundle exec rake db:seed RAILS_ENV=production"
+  end
+  desc "Drop database"
+  task drop: :environment do
+    command "bundle exec rake db:drop RAILS_ENV=production"
+  end
+end
 
 namespace :docker do
   set :compose_file, "#{deploy_to}/#{shared_path}/docker-compose.yml"
