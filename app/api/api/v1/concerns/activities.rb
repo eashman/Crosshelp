@@ -25,7 +25,7 @@ module API
           end
 
           desc '用户参与的活动[GET /activities/users/partake]'
-          get '/activities/users/publish'  do
+          get '/activities/users/partake'  do
             user = current_user
             activities = Activity.find(user.activityids)
             wrap_meta(
