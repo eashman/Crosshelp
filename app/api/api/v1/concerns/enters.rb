@@ -44,24 +44,42 @@ module API
           desc '保存报名表[POST /enters/save]'
           params do
             requires :activityId, type: String, desc: '活动ID'
+            requires :activityfeeId, type: String, desc: '费用ID'
             requires :name, type: String, desc: '姓名'
             requires :phone, type: String, desc: '手机号码'
             requires :job, type: String, desc: '职位'
-            requires :content, type: JSON, desc: '自定义内容'
+            optional :content, type: JSON, desc: '自定义内容'
           end
           post '/enters/save' do
             user = current_user
+            activity = Activity.find_by(id: params.activity_id)
+            activityfee = Activityfee.find_by(id: activityfeeId)
             enter = Enter.create!(
               activity_id: params.activityId,
+              activityfee_id: params.activityfeeId,
               name: params.name,
               phone: params.phone,
-              job: params.job.to_json
+              job: params.job,
+              content: params.content.to_json,
+            )
+            order = user.orders.create!(
+              name: activity.name,
+              sum: activityfee.money,
+              factsum: activityfee.money
+            )
+            ticket = Ticket.create!(
+              activity_id: params.activityId,
+              enter_id: enter.id,
+              order_id: order.id
             )
             ids = user.activityids
             ids.push params.activityId
             ids.uniq!
             user.update!(activityids: ids)
-            wrap_meta(enter: enter.id)
+            wrap_meta(enter_id: enter.id,
+              order_id: order.id,
+              ticket_id: ticket.id
+            )
           end
         end
       end

@@ -59,6 +59,7 @@ gem 'redis-rails'
 gem 'hiredis'
 gem 'redis', require: %w(redis redis/connection/hiredis)
 gem 'redis-objects'
+gem 'redis-namespace'
 #yml params
 gem 'config'
 # Use Capistrano for deployment

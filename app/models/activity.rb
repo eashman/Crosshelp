@@ -21,4 +21,5 @@ class Activity < ApplicationRecord
   belongs_to :user
   has_many :activityfees
   has_many :enters
+  has_many :tickets
 end

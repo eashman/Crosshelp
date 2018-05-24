@@ -15,4 +15,5 @@
 class Enter < ApplicationRecord
   belongs_to :activity
   belongs_to :cproperty
+  has_one :ticket
 end

@@ -35,6 +35,7 @@
 #  remark           :string
 #  imtoken          :string
 #  balance          :decimal(6, 2)
+#  activityids      :integer          default([]), is an Array
 #
 
 class User < ApplicationRecord

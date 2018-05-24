@@ -9,3 +9,5 @@ require 'connection_pool'
 Redis::Objects.redis = ConnectionPool.new(size: 5, timeout: 5) { Redis.new redis_basic.merge(db: Settings.redis.object_db) }
 
 $redis = Redis.new redis_basic.merge(db: Settings.redis.queue)
+$redisQr = Redis::Namespace.new('qrcode', redis: Redis.new)
+$redisOrder = Redis::Namespace.new('ordernumber', redis: Redis.new)
