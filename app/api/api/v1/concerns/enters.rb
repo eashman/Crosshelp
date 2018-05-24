@@ -12,9 +12,32 @@ module API
           post '/enters/new' do
             user = current_user
             activity = Activity.find_by(id: params.activity_id)
-            cproperties = Cproperty.find_by(ids: activity.cpropertyids) if activity
+            cproperties = Cproperty.find(activity.cpropertyids) if activity
             wrap_meta(
               cproperties: Entities::CpropertyList.represent(cproperties).as_json
+            )
+          end
+
+          desc '报名信息 [GET /enters/personal]'
+          params do
+            requires :enterId, type: String, desc: '报名ID'
+          end
+          get '/enters/personal' do
+            user = current_user
+            enter = Enter.find_by(id: params.enterId)
+            wrap_meta(enter: enter)
+          end
+
+          desc '报名名单 [GET /enters/list]'
+          params do
+            requires :activity_id, type: String, desc: '活动ID'
+          end
+          get '/enters/list' do
+            user = current_user
+            activity = Activity.find_by(id: params.activity_id)
+            enters = activity.enters
+            wrap_meta(
+              enters: Entities::EnterList.represent(enters).as_json
             )
           end
 

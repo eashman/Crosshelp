@@ -5,10 +5,29 @@ module API
       module Activities
         extend ActiveSupport::Concern
         included do
-          desc '获取活动 [GET /activities]'
-          get '/activities'  do
+          desc '获取活动信息 [GET /activities/fetch]'
+          params do
+            requires :activityId, type: String, desc: '活动ID'
+          end
+          get '/activities/fetch'  do
+            user = current_user
+            activity = Activity.find_by(id: params.activityId)
+            wrap_meta(activity: activity)
+          end
+
+          desc '用户发布的活动[GET /activities/users/publish]'
+          get '/activities/users/publish'  do
             user = current_user
             activities = user.activities
+            wrap_meta(
+              activities: Entities::ActivityList.represent(activities).as_json
+            )
+          end
+
+          desc '用户参与的活动[GET /activities/users/partake]'
+          get '/activities/users/publish'  do
+            user = current_user
+            activities = Activity.find(user.activityids)
             wrap_meta(
               activities: Entities::ActivityList.represent(activities).as_json
             )
@@ -47,7 +66,7 @@ module API
             declared(params, include_missing: false).activityfees.to_a.each do |sp|
               Activityfee.create!(sp.merge(activity_id: activity.id).to_h)
             end
-            wrap_meta(activity: activity)
+            wrap_meta(id: activity.id)
           end
         end
       end
