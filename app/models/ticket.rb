@@ -16,6 +16,7 @@
 #
 
 class Ticket < ApplicationRecord
+  extend Enumerize
   belongs_to :enter
   belongs_to :order
   belongs_to :activity
