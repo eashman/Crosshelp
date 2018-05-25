@@ -18,10 +18,10 @@ class Ticket < ApplicationRecord
   belongs_to :order
   belongs_to :activity
   enumerize :state, in: [
-    :created,  # 待参与
-    :success,    # 完成
-    :processing, # 进行中
-    :cancel      # 已取消
+    :created,    #待参与
+    :processing, #参与
+    :finish,     #完成
+    :cancel      #已取消
   ], default: :created, predicates: { prefix: true }, scope: true
 
   before_create do

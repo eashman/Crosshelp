@@ -7,11 +7,11 @@ module API
         included do
           desc '获取报名表[POST /enters/new]'
           params do
-            requires :activity_id, type: String, desc: '活动ID'
+            requires :activityId, type: String, desc: '活动ID'
           end
           post '/enters/new' do
             user = current_user
-            activity = Activity.find_by(id: params.activity_id)
+            activity = Activity.find_by(id: params.activityId)
             cproperties = Cproperty.find(activity.cpropertyids) if activity
             wrap_meta(
               cproperties: Entities::CpropertyList.represent(cproperties).as_json
@@ -30,11 +30,11 @@ module API
 
           desc '报名名单 [GET /enters/list]'
           params do
-            requires :activity_id, type: String, desc: '活动ID'
+            requires :activityId, type: String, desc: '活动ID'
           end
           get '/enters/list' do
             user = current_user
-            activity = Activity.find_by(id: params.activity_id)
+            activity = Activity.find_by(id: params.activityId)
             enters = activity.enters if activity
             wrap_meta(
               enters: Entities::EnterList.represent(enters).as_json
@@ -52,7 +52,7 @@ module API
           end
           post '/enters/save' do
             user = current_user
-            activity = Activity.find_by(id: params.activity_id)
+            activity = Activity.find_by(id: params.activitId)
             activityfee = Activityfee.find_by(id: activityfeeId)
             enter = Enter.create!(
               activity_id: params.activityId,
@@ -67,19 +67,11 @@ module API
               sum: activityfee.money,
               factsum: activityfee.money
             )
-            ticket = Ticket.create!(
-              activity_id: params.activityId,
-              enter_id: enter.id,
-              order_id: order.id
-            )
             ids = user.activityids
             ids.push params.activityId
             ids.uniq!
             user.update!(activityids: ids)
-            wrap_meta(enter_id: enter.id,
-              order_id: order.id,
-              ticket_id: ticket.id
-            )
+            wrap_meta(enter_id: enter.id,order_id: order.id)
           end
         end
       end
