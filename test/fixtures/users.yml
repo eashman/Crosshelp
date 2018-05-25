@@ -36,6 +36,8 @@
 #  imtoken          :string
 #  balance          :decimal(6, 2)
 #  activityids      :integer          default([]), is an Array
+#  collection_ids   :integer          default([]), is an Array
+#  follow_ids       :integer          default([]), is an Array
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

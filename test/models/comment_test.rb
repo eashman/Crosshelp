@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: comments
@@ -10,6 +9,7 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  likes_count :integer          default(0)
+#  post_id     :integer
 #
 
 require 'test_helper'

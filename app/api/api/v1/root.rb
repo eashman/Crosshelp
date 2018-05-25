@@ -21,6 +21,7 @@ module API
       mount API::V1::Enters
       mount API::V1::Tickets
       mount API::V1::Orders
+      mount API::V1::Comments
     end
   end
 end

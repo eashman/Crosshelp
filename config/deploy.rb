@@ -102,6 +102,7 @@ namespace :searchkick do
   desc 'searchkick:reindex'
   task reindex: :environment do
     command 'bundle exec rake searchkick:reindex CLASS=User RAILS_ENV=production'
+    command 'bundle exec rake searchkick:reindex CLASS=Post RAILS_ENV=production'
   end
 end
 

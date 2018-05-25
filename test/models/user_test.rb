@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: users
@@ -38,6 +37,8 @@
 #  imtoken          :string
 #  balance          :decimal(6, 2)
 #  activityids      :integer          default([]), is an Array
+#  collection_ids   :integer          default([]), is an Array
+#  follow_ids       :integer          default([]), is an Array
 #
 
 require 'test_helper'
