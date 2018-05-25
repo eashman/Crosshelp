@@ -15,6 +15,17 @@ module API
             )
           end
 
+          desc '提问的回答 [GET /posts/comments/list]'
+          params do
+            requires :postId, type: String, desc: '提问ID'
+          end
+          get '/posts/comments/list' do
+            user = current_user
+            post = Post.find_by(id: params.postId)
+            comments = post.comments if post
+            wrap_meta(comments: Entities::CommentList.represent(comments).as_json)
+          end
+
           desc '提问 [POST /posts/new]'
           params do
             requires :content, type: String, desc: '内容'
