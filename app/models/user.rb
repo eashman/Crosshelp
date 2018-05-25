@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -40,7 +42,7 @@
 
 class User < ApplicationRecord
   extend Enumerize
-  searchkick callbacks: :async, text_middle: [:name, :phone]
+  searchkick callbacks: :async, text_middle: %i[name phone]
   has_secure_token
   has_and_belongs_to_many :labels
   has_and_belongs_to_many :groups
@@ -50,26 +52,26 @@ class User < ApplicationRecord
   has_many :friendships
   has_many :orders
   belongs_to :company, optional: true
-  has_and_belongs_to_many :friends,class_name: 'User',join_table: 'friendships',association_foreign_key: 'friend_id', foreign_key: 'user_id'
+  has_and_belongs_to_many :friends, class_name: 'User', join_table: 'friendships', association_foreign_key: 'friend_id', foreign_key: 'user_id'
   has_many :circles
   enumerize :viper, in: [
-    :normal, #未申请
-    :apply,  #申请
-    :agree,  #同意
-    :ignore  #忽略
-    ], default: :normal, predicates: {prefix: true}, scope: true
+    :normal, # 未申请
+    :apply,  # 申请
+    :agree,  # 同意
+    :ignore  # 忽略
+  ], default: :normal, predicates: { prefix: true }, scope: true
   enumerize :corporater, in: [
-    :normal, #未申请
-    :apply,  #申请
-    :agree,  #同意
-    :ignore  #忽略
-    ], default: :normal, predicates: {prefix: true}, scope: true
+    :normal, # 未申请
+    :apply,  # 申请
+    :agree,  # 同意
+    :ignore  # 忽略
+  ], default: :normal, predicates: { prefix: true }, scope: true
   enumerize :authentication, in: [
-    :normal, #未申请
-    :apply,  #申请
-    :success,  #同意
+    :normal, # 未申请
+    :apply,  # 申请
+    :success, # 同意
     :cancel # 已取消
-    ], default: :normal, predicates: {prefix: true}, scope: true
+  ], default: :normal, predicates: { prefix: true }, scope: true
   action_store :like, :post, counter_cache: true
   action_store :star, :post, counter_cache: true, user_counter_cache: true
   action_store :follow, :post

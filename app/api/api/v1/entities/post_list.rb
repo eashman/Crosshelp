@@ -1,9 +1,10 @@
-# -*- coding: utf-8 -*-
+# frozen_string_literal: true
+
 module API
   module V1
     module Entities
       class PostList < Grape::Entity
-        expose :id,:title
+        expose :id, :title
       end
     end
   end

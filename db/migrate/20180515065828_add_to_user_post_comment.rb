@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddToUserPostComment < ActiveRecord::Migration[5.2]
   def change
     add_column :users, :star_posts_count, :integer, default: 0

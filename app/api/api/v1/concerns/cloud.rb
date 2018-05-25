@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+# frozen_string_literal: true
+
 module API
   module V1
     module Concerns
@@ -13,10 +14,10 @@ module API
           end
           post '/rongcloud/user/getToken' do
             user = User.find_by(id: params.id)
-            result = rcservice.get_token(params.id,params.name,params.photo)
+            result = rcservice.get_token(params.id, params.name, params.photo)
             p result.fetch('token')
             if user
-              user.update!(imtoken:result.fetch('token') )
+              user.update!(imtoken: result.fetch('token'))
               wrap_meta(result: result)
             else
               wrap_meta('ID不存在该用户')

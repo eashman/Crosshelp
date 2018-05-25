@@ -1,7 +1,8 @@
 # frozen_string_literal: true
+
 redis_basic = {
   host: Settings.redis.host,
-  #password: Settings.redis.password,
+  # password: Settings.redis.password,
   port: Settings.redis.port
 }
 

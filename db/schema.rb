@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_24_142127) do
+ActiveRecord::Schema.define(version: 2018_05_25_091427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -206,6 +206,8 @@ ActiveRecord::Schema.define(version: 2018_05_24_142127) do
     t.string "Qrcode"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.string "remark"
   end
 
   create_table "users", force: :cascade do |t|
@@ -242,6 +244,8 @@ ActiveRecord::Schema.define(version: 2018_05_24_142127) do
     t.string "imtoken"
     t.decimal "balance", precision: 6, scale: 2
     t.integer "activityids", default: [], array: true
+    t.integer "collection_ids", default: [], array: true
+    t.integer "follow_ids", default: [], array: true
     t.index ["open_id"], name: "index_users_on_open_id"
     t.index ["phone"], name: "index_users_on_phone"
     t.index ["token"], name: "index_users_on_token"

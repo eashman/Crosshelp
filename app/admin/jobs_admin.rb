@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 Trestle.resource(:jobs) do
   menu do
-    item :jobs, icon: "fa fa-envira",label: '行业与职位'
+    item :jobs, icon: 'fa fa-envira', label: '行业与职位'
   end
 
   # Customize the table columns shown on the index view.

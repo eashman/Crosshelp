@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 Trestle.resource(:companies) do
   menu do
-    item :companies, icon: "fa fa-star",label: '公司'
+    item :companies, icon: 'fa fa-star', label: '公司'
   end
 
   # Customize the table columns shown on the index view.

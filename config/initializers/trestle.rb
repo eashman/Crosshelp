@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 Trestle.configure do |config|
   # == Customization Options
   #
   # Set the page title shown in the main header within the admin.
   #
-  config.site_title = "跨境帮后台"
+  config.site_title = '跨境帮后台'
 
   # Specify a custom image to be used in place of the site title for mobile and
   # expanded/desktop navigation. These images should be placed within your
@@ -18,13 +20,13 @@ Trestle.configure do |config|
   # Set the text shown in the page footer within the admin.
   # Defaults to 'Powered by Trestle'.
   #
-   config.footer = "@跨境帮"
+  config.footer = '@跨境帮'
 
   # == Mounting Options
   #
   # Set the path at which to mount the Trestle admin. Defaults to /admin.
   #
-   config.path = "/admin"
+  config.path = '/admin'
 
   # Toggle whether Trestle should automatically mount the admin within your
   # Rails application's routes. Defaults to true.
@@ -149,9 +151,9 @@ Trestle.configure do |config|
   # Customize the method for determining the user's locale.
   # Defaults to user.locale (if the method is defined).
   #
-   config.auth.locale = ->(user) {
-     user.locale if user.respond_to?(:locale)
-   }
+  config.auth.locale = ->(user) {
+    user.locale if user.respond_to?(:locale)
+  }
 
   # Customize the method for determining the user's time zone.
   # Defaults to user.time_zone (if the method is defined).

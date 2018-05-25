@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+# frozen_string_literal: true
+
 module API
   module V1
     module Entities
@@ -6,7 +7,7 @@ module API
         expose :id, :name, :friend_ids
         expose :friend_ids do |ids, _|
           User.find(ids).map do |_f|
-              { id: _f.id, name: _f.name}
+            { id: _f.id, name: _f.name }
           end
         end
       end

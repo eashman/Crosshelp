@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+# frozen_string_literal: true
+
 module API
   module V1
     module Concerns
@@ -6,7 +7,7 @@ module API
         extend ActiveSupport::Concern
         included do
           desc '标签 [GET /circles]'
-          get '/circles'  do
+          get '/circles' do
             user = current_user
             circles = user.circles
             wrap_meta(
@@ -33,7 +34,7 @@ module API
             user = current_user
             create_body = declared params
             circle = user.circles.find(params.id)
-            friend_ids  = circle.friend_ids
+            friend_ids = circle.friend_ids
             friend_ids = friend_ids.concat params.friend_ids
             friend_ids.uniq!
             circle.update!(friend_ids: friend_ids)

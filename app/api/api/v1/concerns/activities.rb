@@ -15,6 +15,36 @@ module API
             wrap_meta(activity: activity)
           end
 
+          desc '收藏活动 [POST /activities/collection]'
+          params do
+            requires :activityId, type: String, desc: '活动ID'
+          end
+          post '/activities/collection' do
+            user = current_user
+            if user.collection_ids.include? params.activityId
+               wrap_meta( msg: "已经收藏!")
+            else
+              user.collection_ids.push params.activityId
+              user.save!
+              wrap_meta( msg: "收藏成功!")
+            end
+          end
+
+          desc '关注活动 [POST /activities/follow]'
+          params do
+            requires :activityId, type: String, desc: '活动ID'
+          end
+          post '/activities/follow' do
+            user = current_user
+            if user.follow_ids.include? params.activityId
+              wrap_meta( msg: '已经关注!')
+            else
+              user.follow_ids.push params.activityId
+              user.save!
+              wrap_meta( msg: '关注成功!')
+            end
+          end
+
           desc '用户发布的活动[GET /activities/users/publish]'
           get '/activities/users/publish'  do
             user = current_user

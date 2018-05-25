@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module API
   module Helper
     def present(*)
@@ -6,7 +8,7 @@ module API
     end
 
     def current_user
-      host  = headers['Host']
+      host = headers['Host']
       return User.first if host == 'localhost:3000'
 
       return @current_user if @current_user
@@ -20,7 +22,7 @@ module API
 
     def rcservice
       service = RongCloud::Service.new
-      return service
+      service
     end
 
     def raven_capture(e)

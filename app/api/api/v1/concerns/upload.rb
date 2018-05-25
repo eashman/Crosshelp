@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+# frozen_string_literal: true
+
 module API
   module V1
     module Concerns
@@ -13,12 +14,12 @@ module API
             file = params.file
             tmpfile = file.tempfile
             object_key = SecureRandom.hex(16)
-            name = "#{object_key+file.filename}"
-            result = Utils::Uploader.bucket.put_object(name, file: tmpfile,content_type: file.type)
+            name = (object_key + file.filename).to_s
+            result = Utils::Uploader.bucket.put_object(name, file: tmpfile, content_type: file.type)
             if result
-             wrap_meta(name: name)
-           else
-             wrap_meta(msg: '上传异常')
+              wrap_meta(name: name)
+            else
+              wrap_meta(msg: '上传异常')
            end
           end
 
@@ -30,13 +31,13 @@ module API
             file = params.file
             tmpfile = file.tempfile
             object_key = SecureRandom.hex(16)
-            name = "#{object_key+file.filename}"
-            result = Utils::Uploader.pubbucket.put_object(name, file: tmpfile,content_type: file.type)
+            name = (object_key + file.filename).to_s
+            result = Utils::Uploader.pubbucket.put_object(name, file: tmpfile, content_type: file.type)
             if result
-              url =format('%s%s%s%s','https://', Settings.aliyun.pubhost, '/', name)
+              url = format('%s%s%s%s', 'https://', Settings.aliyun.pubhost, '/', name)
               wrap_meta(url: url)
             else
-             wrap_meta(msg: '上传异常')
+              wrap_meta(msg: '上传异常')
             end
           end
 
@@ -45,7 +46,7 @@ module API
             requires :name, type: String, desc: '文件名'
           end
           get '/upload/load' do
-            result = Utils::Uploader.bucket.object_url(params.name,true,3600)
+            result = Utils::Uploader.bucket.object_url(params.name, true, 3600)
             wrap_meta(url: result)
           end
         end

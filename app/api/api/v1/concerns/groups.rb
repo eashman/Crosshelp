@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+# frozen_string_literal: true
+
 module API
   module V1
     module Concerns
@@ -34,8 +35,8 @@ module API
             user = current_user
             create_body = declared params
             group = user.groups.create!(create_body.to_h)
-            #创建群组方法#
-            result = rcservice.create_group(user.id,group.id,group.name)
+            # 创建群组方法#
+            result = rcservice.create_group(user.id, group.id, group.name)
             wrap_meta(result: result)
           end
 
@@ -48,10 +49,10 @@ module API
           post '/groups/add' do
             user = current_user
             group = Group.find_by(id: params.groupId)
-            #user = User.find_by(id: params.userId)
+            # user = User.find_by(id: params.userId)
             group.users << user
-            #加入群组方法#
-            result = rcservice.join_group(user.id,params.groupId,params.groupName)
+            # 加入群组方法#
+            result = rcservice.join_group(user.id, params.groupId, params.groupName)
             wrap_meta(result: result)
           end
         end

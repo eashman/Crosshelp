@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+# frozen_string_literal: true
+
 module API
   module V1
     module Concerns
@@ -9,7 +10,7 @@ module API
           params do
             optional :id, type: String, desc: '用户ID'
           end
-          get '/friends'  do
+          get '/friends' do
             user = current_user
             friend_ids = Friendship.friend_ids(user.id).to_a
             user_ids = friend_ids.pluck(:user_id)
@@ -23,10 +24,10 @@ module API
           end
           desc 'search好友 [GET /friends/search]'
           params do
-            optional :q, type: String,desc: '手机号码或者名字'
+            optional :q, type: String, desc: '手机号码或者名字'
           end
           get '/friends/search' do
-            users = User.search(params.q, fields: [:name,:phone], match: :text_middle).results
+            users = User.search(params.q, fields: %i[name phone], match: :text_middle).results
             wrap_meta(
               users: Entities::UserList.represent(users).as_json
             )
@@ -48,7 +49,7 @@ module API
           get '/friends/circle' do
             user = current_user
             circle = user.circles.find_by(id: params.friend_id)
-            circle_friends = user.find(circle.friend_ids)  if circle
+            circle_friends = user.find(circle.friend_ids) if circle
             wrap_meta(
               friends: Entities::UserList.represent(circle_friends).as_json
             )
@@ -63,16 +64,15 @@ module API
             user = current_user
             create_body = declared params
             body_h = create_body.to_h
-            body_h.merge!(user_id: user.id)
+            body_h[:user_id] = user.id
             friendship = Friendship.create!(body_h)
             wrap_meta(friendship: friendship)
           end
 
-
           desc '同意或忽略好友 [PATCH /friends/agree]'
           params do
             requires :id, type: String, desc: 'ID'
-            requires :state, type: String, values: %w(apply agree ignore), desc: '状态'
+            requires :state, type: String, values: %w[apply agree ignore], desc: '状态'
           end
           patch '/friends/agree' do
             user = current_user
@@ -88,7 +88,7 @@ module API
           get '/friends/school' do
             user = current_user
             friends = User.where(school: user.school).to_a
-            friends = friends.delete_if {|friend| friend.id == user.id }
+            friends = friends.delete_if { |friend| friend.id == user.id }
             wrap_meta(friends: Entities::FriendList.represent(friends).as_json)
           end
 
@@ -99,7 +99,7 @@ module API
           get '/friends/birthday' do
             user = current_user
             friends = User.where(birthday: user.birthday).to_a
-            friends = friends.delete_if {|friend| friend.id == user.id }
+            friends = friends.delete_if { |friend| friend.id == user.id }
             wrap_meta(friends: Entities::FriendList.represent(friends).as_json)
           end
 
@@ -110,7 +110,7 @@ module API
           get '/friends/city' do
             user = current_user
             friends = User.where(city: user.city).to_a
-            friends = friends.delete_if {|friend| friend.id == user.id }
+            friends = friends.delete_if { |friend| friend.id == user.id }
             wrap_meta(friends: Entities::FriendList.represent(friends).as_json)
           end
         end

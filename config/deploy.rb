@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'mina/multistage'
 require 'mina/bundler'
 require 'mina/rails'
 require 'mina/git'
-require 'mina/rbenv'    # for rbenv support. (http://rbenv.org)
-#require 'mina/rvm'    # for rvm support. (http://rvm.io)
+require 'mina/rbenv' # for rbenv support. (http://rbenv.org)
+# require 'mina/rvm'    # for rvm support. (http://rvm.io)
 require 'mina/puma'
 require 'mina_sidekiq/tasks'
 # Basic settings:
@@ -20,14 +22,14 @@ set :user, 'root'
 set :rails_env, 'production'
 
 # For system-wide RVM install.
-#set :rvm_path, '/usr/local/rvm/bin/rvm'
+# set :rvm_path, '/usr/local/rvm/bin/rvm'
 
 # Manually create these paths in shared/ (eg: shared/config/database.yml) in your server.
 # They will be linked in the 'deploy:link_shared_paths' step.
-#set :shared_paths, ['config/database.yml', 'config/secrets.yml', 'log']
+# set :shared_paths, ['config/database.yml', 'config/secrets.yml', 'log']
 
 set :shared_paths, ['config/application.yml', 'config/database.yml', 'config/secrets.yml', 'config/puma.rb',
-  'log', 'tmp/pids', 'tmp/sockets', 'docker-compose.yml']
+                    'log', 'tmp/pids', 'tmp/sockets', 'docker-compose.yml']
 
 set :sidekiq_pid, "#{deploy_to}/#{shared_path}/tmp/pids/sidekiq.pid"
 
@@ -44,27 +46,26 @@ task :environment do
   invoke :'rbenv:load'
 
   # For those using RVM, use this to load an RVM version@gemset.
-  #invoke :'rvm:use[ruby-2.4.0@default]'
-  #invoke :'rvm:use', 'ruby-2.4.0@default'
+  # invoke :'rvm:use[ruby-2.4.0@default]'
+  # invoke :'rvm:use', 'ruby-2.4.0@default'
 end
 
 # Put any custom mkdir's in here for when `mina setup` is ran.
 # For Rails apps, we'll make some of the shared paths that are shared between
 # all releases.
-task :setup => :environment do
-  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/log"]
-  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/log"]
+task setup: :environment do
+  queue! %(mkdir -p "#{deploy_to}/#{shared_path}/log")
+  queue! %(chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/log")
 
-  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/config"]
-  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/config"]
+  queue! %(mkdir -p "#{deploy_to}/#{shared_path}/config")
+  queue! %(chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/config")
 
-  queue! %[touch "#{deploy_to}/#{shared_path}/config/database.yml"]
-  queue! %[touch "#{deploy_to}/#{shared_path}/config/secrets.yml"]
-  queue  %[echo "-----> Be sure to edit '#{deploy_to}/#{shared_path}/config/database.yml' and 'secrets.yml'."]
-
+  queue! %(touch "#{deploy_to}/#{shared_path}/config/database.yml")
+  queue! %(touch "#{deploy_to}/#{shared_path}/config/secrets.yml")
+  queue  %(echo "-----> Be sure to edit '#{deploy_to}/#{shared_path}/config/database.yml' and 'secrets.yml'.")
 end
 
-desc "Deploys the current version to the server."
+desc 'Deploys the current version to the server.'
 task deploy: :environment do
   to :before_hook do
     # Put things to run locally before ssh
@@ -78,8 +79,8 @@ task deploy: :environment do
     invoke :'bundle:install'
     invoke :'rails:db_create'
     invoke :'rails:db_migrate'
-    #invoke :'npm:install'
-    #invoke :'searchkick:reindex'
+    # invoke :'npm:install'
+    # invoke :'searchkick:reindex'
     invoke :'rails:assets_precompile'
 
     to :launch do
@@ -89,7 +90,6 @@ task deploy: :environment do
     end
   end
 end
-
 
 namespace :npm do
   desc 'npm install'
@@ -106,19 +106,19 @@ namespace :searchkick do
 end
 
 namespace :db do
-  desc "Seed data to the database"
+  desc 'Seed data to the database'
   task seed: :environment do
-      command "bundle exec rake db:seed RAILS_ENV=production"
+    command 'bundle exec rake db:seed RAILS_ENV=production'
   end
-  desc "Drop database"
+  desc 'Drop database'
   task drop: :environment do
-    command "bundle exec rake db:drop RAILS_ENV=production"
+    command 'bundle exec rake db:drop RAILS_ENV=production'
   end
 end
 
 namespace :docker do
   set :compose_file, "#{deploy_to}/#{shared_path}/docker-compose.yml"
-  set :project_name, 'CrossBorderHelp'.freeze
+  set :project_name, 'CrossBorderHelp'
 
   desc 'Start docker-compose'
   task up: :environment do
@@ -135,7 +135,6 @@ namespace :docker do
     queue "docker-compose -f #{compose_file} -p #{project_name} restart"
   end
 end
-
 
 # For help in making your deploy script, see the Mina documentation:
 #

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: cproperties
@@ -10,6 +12,6 @@
 #
 
 class Cproperty < ApplicationRecord
-  validates :keyname, presence: true,uniqueness: true
+  validates :keyname, presence: true, uniqueness: true
   has_many :enters
 end

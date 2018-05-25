@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 Trestle.resource(:labels) do
   menu do
-    item :labels, icon: "fa fa-list",label: '擅长领域'
+    item :labels, icon: 'fa fa-list', label: '擅长领域'
   end
 
   # Customize the table columns shown on the index view.

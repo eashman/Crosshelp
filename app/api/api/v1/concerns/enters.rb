@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+# frozen_string_literal: true
+
 module API
   module V1
     module Concerns
@@ -60,7 +61,7 @@ module API
               name: params.name,
               phone: params.phone,
               job: params.job,
-              content: params.content.to_json,
+              content: params.content.to_json
             )
             order = user.orders.create!(
               name: activity.name,
@@ -71,7 +72,7 @@ module API
             ids.push params.activityId
             ids.uniq!
             user.update!(activityids: ids)
-            wrap_meta(enter_id: enter.id,order_id: order.id)
+            wrap_meta(enter_id: enter.id, order_id: order.id)
           end
         end
       end

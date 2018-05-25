@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+# frozen_string_literal: true
+
 module API
   module V1
     module Concerns
@@ -8,9 +9,9 @@ module API
           desc '完善公司信息 [POST /companies/perfect]'
           params do
             requires :name, type: String, desc: '公司名称'
-            requires :logo,  type: String, desc: 'logo'
-            requires :address,  type: String, desc: '地址'
-            requires :industry,  type: String, desc: '行业'
+            requires :logo, type: String, desc: 'logo'
+            requires :address, type: String, desc: '地址'
+            requires :industry, type: String, desc: '行业'
             requires :website,  type: String, desc: '网址'
             requires :mailbox,  type: String, desc: '邮箱'
             requires :summary,  type: String, desc: '公司简介'
@@ -21,17 +22,17 @@ module API
             if user.corporater == 'agree'
               wrap_meta(msg: '该企业已经认证成功，信息禁止修改')
             else
-             company = user.company.update!(create_body.to_h)
-             wrap_meta(company: company)
+              company = user.company.update!(create_body.to_h)
+              wrap_meta(company: company)
            end
           end
 
           desc '申请认证企业 [PATCH /companies/corporater]'
           params do
-            requires :logo,  type: String, desc: 'logo'
-            requires :industry,  type: String, desc: '行业'
+            requires :logo, type: String, desc: 'logo'
+            requires :industry, type: String, desc: '行业'
             requires :business_licence, type: String, desc: '营业执照'
-            requires :corporater, type: String, values: %w(normal apply), default: 'normal',desc: '状态'
+            requires :corporater, type: String, values: %w[normal apply], default: 'normal', desc: '状态'
           end
           patch '/users/corporater' do
             user = current_user
@@ -46,7 +47,7 @@ module API
 
           desc '认证企业的员工列表 [GET /companies/users/list]'
           params do
-            requires :companyId,  type: String, desc: '企业ID'
+            requires :companyId, type: String, desc: '企业ID'
           end
           get '/companies/users/list' do
             user = current_user
@@ -56,7 +57,6 @@ module API
               users: Entities::UserList.represent(users).as_json
             )
           end
-
 
           desc '编辑员工信息 [PUT /companies/users/perfect]'
           params do

@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+# frozen_string_literal: true
+
 module API
   module V1
     module Concerns
@@ -6,7 +7,7 @@ module API
         extend ActiveSupport::Concern
         included do
           desc '获取提问列表 [GET /posts]'
-          get '/posts'  do
+          get '/posts' do
             user = current_user
             posts = user.posts
             wrap_meta(
@@ -17,7 +18,7 @@ module API
           desc '提问 [POST /posts/new]'
           params do
             requires :title, type: String, desc: '主题'
-            requires :content,  type: String, desc: '内容'
+            requires :content, type: String, desc: '内容'
           end
           post '/posts/new' do
             user = current_user

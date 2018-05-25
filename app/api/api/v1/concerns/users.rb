@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+# frozen_string_literal: true
+
 module API
   module V1
     module Concerns
@@ -10,7 +11,7 @@ module API
             optional :phone, type: String, desc: '手机号码'
             optional :open_id, type: String, desc: '微信标识'
             optional :code, type: String, desc: '验证码'
-            requires :type, type: String, values: %w(wx phone), desc: '登陆类型'
+            requires :type, type: String, values: %w[wx phone], desc: '登陆类型'
           end
           post '/users/login' do
             if params.type == 'wx'
@@ -80,19 +81,19 @@ module API
 
           desc '头像 [PATCH /users/photo]'
           params do
-             requires :photo, type: String, desc: '头像'
+            requires :photo, type: String, desc: '头像'
           end
           patch '/users/photo' do
             user = current_user
             user.update!(photo: params.photo)
-            wrap_meta()
+            wrap_meta
           end
 
           desc 'vip用户认证 [POST /users/vip]'
           params do
             optional :badge, type: String, desc: '工牌'
             optional :card, type: String, desc: '名片'
-            requires :viper, type: String, values: %w(normal apply), default: 'normal',desc: '状态'
+            requires :viper, type: String, values: %w[normal apply], default: 'normal', desc: '状态'
           end
           post '/users/vip' do
             user = current_user
@@ -113,10 +114,10 @@ module API
           post '/users/viper/add' do
             user = current_user
             count = user.vipercount
-            if user.authentication == 'success' and user.vipercount > 0
+            if (user.authentication == 'success') && (user.vipercount > 0)
               staff = User.find_by(id: params.userId)
               staff.update!(viper: 'agree')
-              count = count - 1
+              count -= 1
               user.update!(vipercount: count)
               wrap_meta(msg: '成功')
             else
@@ -151,7 +152,7 @@ module API
             user = current_user
             create_body = declared params
             user.update!(create_body.to_h)
-            wrap_meta()
+            wrap_meta
           end
 
           desc '编辑个人信息 [PUT /users/edit]'

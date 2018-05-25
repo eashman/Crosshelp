@@ -1,7 +1,7 @@
-# -*- coding: utf-8 -*-
+# frozen_string_literal: true
+
 module API
   class Root < Grape::API
-
     def self.inherited(subclass)
       super
 
