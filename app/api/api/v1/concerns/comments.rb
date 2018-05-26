@@ -20,6 +20,15 @@ module API
             )
             wrap_meta(id: comment.id)
           end
+
+          desc '我的回答 [GET /comments/users/list]'
+          get '/comments/users/list' do
+            user = current_user
+            comments = user.comments
+            wrap_meta(
+              comments: Entities::CommentList.represent(comments).as_json
+            )
+          end
         end
       end
     end

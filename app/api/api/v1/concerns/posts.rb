@@ -6,7 +6,7 @@ module API
       module Posts
         extend ActiveSupport::Concern
         included do
-          desc '获取提问列表 [GET /posts]'
+          desc '我的提问列表 [GET /posts]'
           get '/posts' do
             user = current_user
             posts = user.posts
@@ -14,7 +14,7 @@ module API
               posts: Entities::PostList.represent(posts).as_json
             )
           end
-
+          
           desc '提问的回答 [GET /posts/comments/list]'
           params do
             requires :postId, type: String, desc: '提问ID'
