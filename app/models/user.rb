@@ -50,6 +50,7 @@ class User < ApplicationRecord
   has_many :activities
   has_many :posts
   has_many :comments
+  has_one :applicant
   has_many :friendships
   has_many :orders
   belongs_to :company, optional: true

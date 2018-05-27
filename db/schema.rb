@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_25_142202) do
+ActiveRecord::Schema.define(version: 2018_05_27_145956) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,20 @@ ActiveRecord::Schema.define(version: 2018_05_25_142202) do
     t.string "password_digest"
     t.string "remember_token"
     t.datetime "remember_token_expires_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "applicants", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "name"
+    t.string "sex"
+    t.string "head"
+    t.date "begin_work_date"
+    t.date "birthday"
+    t.string "phone"
+    t.string "job_status"
+    t.text "advantage"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -109,6 +123,18 @@ ActiveRecord::Schema.define(version: 2018_05_25_142202) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "educationexperiences", force: :cascade do |t|
+    t.integer "applicant_id"
+    t.string "school"
+    t.string "major"
+    t.string "education"
+    t.date "begin_date"
+    t.date "end_date"
+    t.text "experience"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "enters", force: :cascade do |t|
     t.integer "activity_id"
     t.json "content", default: {}
@@ -118,6 +144,16 @@ ActiveRecord::Schema.define(version: 2018_05_25_142202) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "activityfee_id"
+  end
+
+  create_table "expectjobs", force: :cascade do |t|
+    t.integer "applicant_id"
+    t.string "industry"
+    t.string "job"
+    t.string "city"
+    t.string "salary"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "friendships", force: :cascade do |t|
@@ -199,6 +235,20 @@ ActiveRecord::Schema.define(version: 2018_05_25_142202) do
     t.integer "comments_count", default: 0
   end
 
+  create_table "projectexperiences", force: :cascade do |t|
+    t.integer "applicant_id"
+    t.string "project_name"
+    t.string "project_connect"
+    t.string "employment"
+    t.string "role"
+    t.date "begin_date"
+    t.date "end_date"
+    t.text "project_content"
+    t.text "performance"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tickets", force: :cascade do |t|
     t.integer "enter_id"
     t.integer "order_id"
@@ -251,6 +301,19 @@ ActiveRecord::Schema.define(version: 2018_05_25_142202) do
     t.index ["open_id"], name: "index_users_on_open_id"
     t.index ["phone"], name: "index_users_on_phone"
     t.index ["token"], name: "index_users_on_token"
+  end
+
+  create_table "workexperiences", force: :cascade do |t|
+    t.integer "applicant_id"
+    t.string "position"
+    t.string "department"
+    t.string "company_name"
+    t.date "begin_date"
+    t.date "end_date"
+    t.text "job_content"
+    t.text "performance"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
