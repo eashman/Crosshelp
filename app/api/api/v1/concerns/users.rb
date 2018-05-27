@@ -32,8 +32,8 @@ module API
           params do
             requires :open_id, type: String, desc: '微信标识'
             requires :nickname, type: String, desc: '名称'
-            requires :headimgurl, type: String, desc: '名称'
-            requires :sex, type: String, desc: '名称'
+            requires :headimgurl, type: String, desc: '头像'
+            requires :sex, type: String, desc: '性别'
           end
           post '/users/wx/register' do
             user = User.find_or_create_by(open_id: params.open_id)
