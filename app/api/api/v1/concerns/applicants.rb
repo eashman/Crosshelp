@@ -6,6 +6,23 @@ module API
       module Applicants
         extend ActiveSupport::Concern
         included do
+          desc '预览简历 [GET /applicants/show]'
+          get '/applicants/show' do
+            user = current_user
+            applicant = user.applicant
+            expectjobs = applicant.expectjobs
+            workexperiences = applicant.workexperiences
+            projectexperiences = applicant.projectexperiences
+            educationexperiences = applicant.educationexperiences
+            wrap_meta(
+              applicant: applicant,
+              expectjobs: expectjobs,
+              workexperiences: workexperiences,
+              projectexperiences: projectexperiences,
+              educationexperiences: educationexperiences
+            )
+          end
+
           desc '编辑简历个人信息 [POST /applicants/edit]'
           params do
             requires :name, type: String, desc: '姓名'
