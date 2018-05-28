@@ -42,6 +42,7 @@ gem 'grape-swagger'
 gem 'trestle'
 gem 'trestle-auth'
 gem 'trestle-tinymce'
+gem 'trestle-search'
 # cross-domain
 gem 'rack-cors'
 # Sentry support

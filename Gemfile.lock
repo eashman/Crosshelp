@@ -362,6 +362,8 @@ GEM
     trestle-auth (0.2.3)
       bcrypt (~> 3.1.7)
       trestle (~> 0.8)
+    trestle-search (0.2.1)
+      trestle (~> 0.8, >= 0.8.7)
     trestle-tinymce (0.1.1)
       tinymce-rails (~> 4.6)
       trestle (~> 0.8)
@@ -440,6 +442,7 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   trestle
   trestle-auth
+  trestle-search
   trestle-tinymce
   turbolinks (~> 5)
   tzinfo-data

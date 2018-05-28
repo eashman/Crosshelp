@@ -5,6 +5,14 @@ Trestle.resource(:articles) do
     item :articles, icon: 'fa fa-star', label: '资讯'
   end
 
+  search do |query|
+    if query
+      Article.where("title ILIKE ?", "%#{query}%")
+    else
+      Article.all
+    end
+   end
+
   # Define the index view table listing
   table do
     column :title, link: true, header: '标题'
@@ -17,7 +25,9 @@ Trestle.resource(:articles) do
      end
     end
     column :updated_at, header: '更新时间', align: :center
-    actions
+    actions do |a|
+      p a
+    end
   end
   form do
     # Organize fields into tabs and sidebars

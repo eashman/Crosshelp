@@ -252,7 +252,22 @@ zh-CN:
   activerecord:
     errors:
       <<: *errors
-
+    models:
+      user: '用户'
+      label: '擅长领域'
+      job: '行业与职位'
+      company: '公司'
+      article: '文章'
+      applicant: '求职'
+      activity: '活动'
+    attributes:
+      user:
+        name: "姓名"
+        phone: '手机号码'
+      job:
+        parent: '父节点'
+        created_at: '创建时间'
+        updated_at: '更新时间'
   trestle:
     title: "Trestle Admin"
     footer: "由 Trestle 强力驱动"
@@ -293,18 +308,20 @@ zh-CN:
 
   admin:
     titles:
-      index: "%{pluralized_model_name}列表"
-      new: "新建%{model_name}"
-      edit: "编辑%{model_name}"
+      index: "列表"
+      new: "新建"
+      edit: "编辑"
 
     buttons:
-      new: "新建%{model_name}"
-      save: "保存%{model_name}"
-      delete: "删除%{model_name}"
+      new: "新建"
+      save: "保存"
+      delete: "删除"
       ok: "确定"
 
     breadcrumbs:
       home: "首页"
+      user: "用户"
+      activity: "活动"
 
     table:
       headers:
