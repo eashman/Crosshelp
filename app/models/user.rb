@@ -74,6 +74,9 @@ class User < ApplicationRecord
     :success, # 同意
     :cancel # 已取消
   ], default: :normal, predicates: { prefix: true }, scope: true
+  after_create do
+    self.create_applicant #创建个人简历表
+  end
   action_store :like, :post, counter_cache: true
   action_store :star, :post, counter_cache: true, user_counter_cache: true
   action_store :follow, :post
