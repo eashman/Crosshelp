@@ -274,6 +274,7 @@ zh-CN:
     version: "版本"
 
     flash:
+      ok: 'OK'
       success:
         title: "成功！"
         create: "%{lowercase_model_name}创建成功。"

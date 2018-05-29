@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 Trestle.resource(:articles) do
+  routes do
+    post :hidden
+  end
   menu do
     item :articles, icon: 'fa fa-star', label: '资讯'
   end
@@ -13,9 +16,22 @@ Trestle.resource(:articles) do
     end
    end
 
+  controller do
+    def hidden
+      p_id = params[:articles_admin_id]
+      article = Article.find_by(id: p_id )
+      if article.hidden
+        article.update(hidden: false)
+      else
+        article.update(hidden: true)
+      end
+      flash[:message] = flash_message("ok", title: "success!")
+      redirect_to action: :index
+    end
+  end
   # Define the index view table listing
   table do
-    column :title, link: true, header: '标题'
+    column :title, header: '标题'
     column :author, header: '作者'
     column :hidden, header: '显示状态', align: :center do |article|
       if article.hidden
@@ -26,7 +42,10 @@ Trestle.resource(:articles) do
     end
     column :updated_at, header: '更新时间', align: :center
     actions do |a|
-      p a
+      a.button icon("fa fa-check"), articles_admin_hidden_path(a.instance),method: :post,class: "btn btn-primary"
+      a.show
+      a.edit
+      a.delete
     end
   end
   form do
