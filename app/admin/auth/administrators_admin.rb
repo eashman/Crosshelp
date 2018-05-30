@@ -2,7 +2,7 @@
 
 Trestle.resource(:administrators, model: Trestle.config.auth.user_class, scope: Auth) do
   menu do
-    group :configuration, priority: :last do
+    group '设置', priority: :last do
       item :administrators, icon: 'fa fa-users', label: '管理员'
     end
   end

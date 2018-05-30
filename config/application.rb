@@ -31,7 +31,7 @@ module CrossBorderHelp
     config.active_job.queue_name_prefix = Rails.env
     config.active_job.queue_name_delimiter = '_'
 
-    config.i18n.available_locales = %i[zh-CN en]
+    config.i18n.available_locales = %i[zh-CN en ]
     config.i18n.default_locale = :"zh-CN"
     config.eager_load_paths += Dir[Rails.root.join('lib')]
     config.autoload_paths += %W[#{config.root}/app/services]

@@ -1,6 +1,6 @@
 Trestle.resource(:applicants) do
   menu do
-    item :applicants, icon: "fa fa-file-text-o", label: '求职'
+    item :applicants, icon: "fa fa-file-text-o", label: '简历',group: '求职'
   end
 
   # Customize the table columns shown on the index view.

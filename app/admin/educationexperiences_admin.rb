@@ -1,8 +1,6 @@
-# frozen_string_literal: true
-
-Trestle.resource(:activities) do
+Trestle.resource(:educationexperiences) do
   menu do
-    item :activities, icon: 'fa fa-wrench', label: '活动',group: '活动吧'
+    item :educationexperiences, icon: "fa fa-star", label: '教育经历',group: '求职'
   end
 
   # Customize the table columns shown on the index view.
@@ -15,7 +13,7 @@ Trestle.resource(:activities) do
 
   # Customize the form fields shown on the new/edit views.
   #
-  # form do |activity|
+  # form do |educationexperience|
   #   text_field :name
   #
   #   row do
@@ -32,6 +30,6 @@ Trestle.resource(:activities) do
   #   http://guides.rubyonrails.org/action_controller_overview.html#strong-parameters
   #
   # params do |params|
-  #   params.require(:activity).permit(:name, ...)
+  #   params.require(:educationexperience).permit(:name, ...)
   # end
 end
