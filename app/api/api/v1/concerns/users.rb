@@ -107,6 +107,51 @@ module API
             user = current_user
           end
 
+          desc '企业开通招聘权限 [POST /users/recruit]'
+          post '/users/recruit' do
+            user = current_user
+          end
+
+          desc '增加招聘官 [POST /users/recruit/add]'
+          params do
+            requires :userId, type: String, desc: '员工ID'
+          end
+          post '/users/recruit/add' do
+            user = current_user
+            if user.recruit == 'superadmin'
+              company = user.company
+              staff = company.users.find_by(id: params.userId)
+              return wrap_meta(msg: '该公司不存在该员工') unless staff
+              staff.update!(recruit: 'admin')
+              wrap_meta(name: staff.name)
+            end
+          end
+
+          desc '移除招聘官 [POST /users/recruit/remove]'
+          params do
+            requires :userId, type: String, desc: '员工ID'
+          end
+          post '/users/recruit/remove' do
+            user = current_user
+            if user.recruit == 'superadmin'
+              company = user.company
+              staff = company.users.find_by(id: params.userId)
+              return wrap_meta(msg: '该公司不存在该员工') unless staff
+              staff.update!(recruit: 'normal')
+              wrap_meta(name: staff.name)
+            end
+          end
+
+          desc '招聘官列表 [GET /users/recruit/list]'
+          get '/users/recruit/list' do
+            user = current_user
+            if user.recruit == 'superadmin'
+              company = user.company
+              staffs = company.users.where(recruit: 'admin').only(:name)
+              wrap_meta(staffs: staffs)
+            end
+          end
+
           desc '企业管理员增加员工vip [POST /users/viper/add]'
           params do
             requires :userId, type: String, desc: '员工ID'
