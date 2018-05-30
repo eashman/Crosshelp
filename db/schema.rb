@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_30_071851) do
+ActiveRecord::Schema.define(version: 2018_05_30_085056) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -198,7 +198,7 @@ ActiveRecord::Schema.define(version: 2018_05_30_071851) do
     t.string "salary"
     t.string "experience"
     t.string "education"
-    t.string "workcontent"
+    t.text "workcontent"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -313,6 +313,7 @@ ActiveRecord::Schema.define(version: 2018_05_30_071851) do
     t.integer "activityids", default: [], array: true
     t.integer "collection_ids", default: [], array: true
     t.integer "follow_ids", default: [], array: true
+    t.string "recruit", default: "normal"
     t.index ["open_id"], name: "index_users_on_open_id"
     t.index ["phone"], name: "index_users_on_phone"
     t.index ["token"], name: "index_users_on_token"

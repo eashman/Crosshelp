@@ -75,6 +75,11 @@ class User < ApplicationRecord
     :success, # 同意
     :cancel # 已取消
   ], default: :normal, predicates: { prefix: true }, scope: true
+  enumerize :recruit, in: [
+    :normal, # 普通
+    :admin,  # 招聘
+    :superadmin, # 超级招聘
+  ], default: :normal, predicates: { prefix: true }, scope: true
   after_create do
     self.create_applicant #创建个人简历表
   end

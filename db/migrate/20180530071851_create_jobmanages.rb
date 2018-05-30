@@ -10,7 +10,7 @@ class CreateJobmanages < ActiveRecord::Migration[5.2]
       t.string :salary #薪资范围
       t.string :experience #经验要求
       t.string :education #最低学历
-      t.string :workcontent #职位描述
+      t.text :workcontent #职位描述
       t.timestamps
     end
   end
