@@ -29,15 +29,23 @@ Trestle.resource(:articles) do
       redirect_to action: :index
     end
   end
+
+  controller do
+    def show
+     super
+     instance = self.instance
+     render 'show'
+    end
+  end
   # Define the index view table listing
   table do
     column :title, header: '标题'
     column :author, header: '作者'
     column :hidden, header: '显示状态', align: :center do |article|
       if article.hidden
-        status_tag(icon('fa fa-square'), :default)
+        status_tag(icon('fa fa-check'), :info)
       else
-        status_tag(icon('fa fa-square-o'), :default)
+        status_tag(icon('fa fa-check-o'), :info)
      end
     end
     column :updated_at, header: '更新时间', align: :center

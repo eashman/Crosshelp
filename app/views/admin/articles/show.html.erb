@@ -1,0 +1,14 @@
+<% content_for(:title, '查看文章') %>
+<%= render layout: "layout" do %>
+<div class="panel panel-default">
+    <div class="panel-heading">
+       <%= instance.title %>
+    </div>
+    <div class="panel-heading">
+       <%= instance.author %>
+    </div>
+    <div class="panel-body">
+       <%= raw instance.body %>
+    </div>
+</div>
+<% end %>
