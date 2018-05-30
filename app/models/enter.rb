@@ -15,7 +15,7 @@
 #
 
 class Enter < ApplicationRecord
-  belongs_to :activity
-  belongs_to :cproperty
+  belongs_to :activity, optional: true
+  belongs_to :cproperty, optional: true
   has_one :ticket
 end

@@ -15,5 +15,5 @@
 #
 
 class Educationexperience < ApplicationRecord
-  belongs_to :applicant
+  belongs_to :applicant, optional: true
 end

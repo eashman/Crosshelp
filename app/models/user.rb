@@ -53,6 +53,7 @@ class User < ApplicationRecord
   has_one :applicant
   has_many :friendships
   has_many :orders
+  has_many :jobmanages
   belongs_to :company, optional: true
   has_and_belongs_to_many :friends, class_name: 'User', join_table: 'friendships', association_foreign_key: 'friend_id', foreign_key: 'user_id'
   has_many :circles

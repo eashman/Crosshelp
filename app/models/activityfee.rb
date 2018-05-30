@@ -14,5 +14,5 @@
 #
 
 class Activityfee < ApplicationRecord
-  belongs_to :activity
+  belongs_to :activity, optional: true
 end

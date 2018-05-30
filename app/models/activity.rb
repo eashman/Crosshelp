@@ -20,7 +20,7 @@
 #
 
 class Activity < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, optional: true
   has_many :activityfees
   has_many :enters
   has_many :tickets
