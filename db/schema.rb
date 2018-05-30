@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_30_085056) do
+ActiveRecord::Schema.define(version: 2018_05_30_121255) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,13 @@ ActiveRecord::Schema.define(version: 2018_05_30_085056) do
     t.text "advantage"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "applicants_jobmanages", id: false, force: :cascade do |t|
+    t.bigint "jobmanage_id", null: false
+    t.bigint "applicant_id", null: false
+    t.index ["applicant_id", "jobmanage_id"], name: "index_applicants_jobmanages_on_applicant_id_and_jobmanage_id"
+    t.index ["jobmanage_id", "applicant_id"], name: "index_applicants_jobmanages_on_jobmanage_id_and_applicant_id"
   end
 
   create_table "articles", force: :cascade do |t|

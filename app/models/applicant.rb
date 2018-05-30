@@ -17,6 +17,7 @@
 #
 
 class Applicant < ApplicationRecord
+  has_and_belongs_to_many :jobmanages
   belongs_to :user, optional: true
   has_many :educationexperiences
   has_many :expectjobs
