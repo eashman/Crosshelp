@@ -27,6 +27,14 @@ module API
            end
           end
 
+          desc '企业招聘 [GET /companies/jobs/list]'
+          get '/companies/jobs/list' do
+            companies = Company.joins(:users).where("users.corporater = 'agree'").distinct
+            wrap_meta(
+              companies: Entities::CompanyList.represent(companies).as_json
+            )
+          end
+
           desc '申请认证企业 [PATCH /companies/corporater]'
           params do
             requires :logo, type: String, desc: 'logo'
