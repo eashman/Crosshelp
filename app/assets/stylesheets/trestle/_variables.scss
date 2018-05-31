@@ -8,3 +8,11 @@
 // Customize the overall Trestle theme color:
 //
 $brand-primary: #337ab7;
+.container{
+  .auth-header h1{
+    font-size: 28px;
+ }
+}
+.visible-xs-inline.visible-lg-inline {
+  font-size: 18px;
+}

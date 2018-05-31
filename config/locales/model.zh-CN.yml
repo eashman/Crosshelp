@@ -222,6 +222,45 @@ zh-CN:
       user:
         name: "姓名"
         phone: '手机号码'
+      expectjob:
+        industry: 期望行业
+        job: 期望职位
+        city: 工作城市
+        salary: 期望薪资
+      projectexperience:
+        project_name: 项目名称
+        project_connect: 项目衔接
+        employment: 人数
+        role: 担任角色
+        begin_date: 时间段开始时间
+        end_date: 时间段结束时间
+        project_content: 项目内容
+        performance: 项目业绩
+      workexperience:
+        position: 职位
+        department: 部门
+        company_name: 公司名称
+        begin_date: 时间段开始时间
+        end_date: 时间段结束时间
+        job_content: 工作内容
+        performance: 工作业绩
+      educationexperience:
+        school: 学校
+        major: 专业
+        education: 学历
+        begin_date: 时间段开始时间
+        end_date: 时间段结束时间
+        experience: 在校经历
+      applicant:
+        name: 姓名
+        sex: 性别
+        head: 头像
+        begin_work_date: 参加工作时间
+        birthday: 出生年月
+        phone: 手机号码
+        job_status: 求职状态
+        advantage: 我的优势
+        attachment: 附件
       job:
         parent: '父节点'
         created_at: '创建时间'

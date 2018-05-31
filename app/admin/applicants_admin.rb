@@ -5,11 +5,17 @@ Trestle.resource(:applicants) do
 
   # Customize the table columns shown on the index view.
   #
-  # table do
-  #   column :name
-  #   column :created_at, align: :center
-  #   actions
-  # end
+   table do
+     column :user_id,->(sp) { sp.user.name }, link: false
+     column :name
+     column :sex
+     column :head, ->(applicant) { image_tag(applicant.head) if applicant.nil? }
+     column :begin_work_date
+     column :birthday
+     column :phone
+     column :job_status
+     column :created_at, align: :center
+   end
 
   # Customize the form fields shown on the new/edit views.
   #
