@@ -23,6 +23,17 @@ module API
             )
           end
 
+          desc '上传简历附件[PATCH /applicants/attachment/upload]'
+          params do
+            requires :attachment, type: String, desc: '附件url'
+          end
+          patch '/applicants/attachment/upload' do
+            user = current_user
+            applicant = user.applicant
+            applicant.update!(attachment: params.attachment)
+            wrap_meta()
+          end
+
           desc '编辑简历个人信息 [POST /applicants/edit]'
           params do
             requires :name, type: String, desc: '姓名'
