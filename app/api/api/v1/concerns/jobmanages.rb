@@ -43,6 +43,18 @@ module API
             wrap_meta(id: jobmanage.id)
           end
 
+          desc '投递职位 [POST /jobmanages/follow]'
+          params do
+            requires :jobmanageId,type: String ,desc: '职位ID'
+          end
+          post '/jobmanages/follow' do
+            user = current_user
+            jobmanage = Jobmanage.find_by(id: params.jobmanageId)
+            applicant = user.applicant
+            applicant.jobmanages << jobmanage
+            wrap_meta(id: jobmanage.id)
+          end
+
           desc '查看职位 [GET /jobmanages/show]'
           params do
             requires :jobmanageId, type: String, desc: '职位ID'
