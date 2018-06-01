@@ -2,6 +2,8 @@ Trestle.resource(:enters) do
   menu do
     item :enters, icon: "fa fa-star",label: '报名名单',group: '活动吧'
   end
+  remove_action :new
+
 
   # Customize the table columns shown on the index view.
   #

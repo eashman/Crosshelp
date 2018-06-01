@@ -2,6 +2,8 @@ Trestle.resource(:projectexperiences) do
   menu do
     item :projectexperiences, icon: "fa fa-star",label: '项目经验',group: '求职'
   end
+  remove_action :new
+
 
   # Customize the table columns shown on the index view.
   #

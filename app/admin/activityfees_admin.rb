@@ -2,6 +2,7 @@ Trestle.resource(:activityfees) do
   menu do
     item :activityfees, icon: "fa fa-star", label: '活动费用',group: '活动吧'
   end
+  remove_action :new
 
   # Customize the table columns shown on the index view.
   #

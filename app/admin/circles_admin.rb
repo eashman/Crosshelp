@@ -2,6 +2,8 @@ Trestle.resource(:circles) do
   menu do
     item :circles, icon: "fa fa-star",label: '圈子'
   end
+  remove_action :new
+
 
   # Customize the table columns shown on the index view.
   #

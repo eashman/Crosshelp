@@ -2,6 +2,8 @@ Trestle.resource(:expectjobs) do
   menu do
     item :expectjobs, icon: "fa fa-star", label: '求职意向',group: '求职'
   end
+  remove_action :new
+
 
   # Customize the table columns shown on the index view.
   #

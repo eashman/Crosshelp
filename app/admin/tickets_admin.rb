@@ -2,6 +2,8 @@ Trestle.resource(:tickets) do
   menu do
     item :tickets, icon: "fa fa-star", label: '电子票',group: '活动吧'
   end
+  remove_action :new
+
 
   # Customize the table columns shown on the index view.
   #

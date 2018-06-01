@@ -2,6 +2,8 @@ Trestle.resource(:jobmanages) do
   menu do
     item :jobmanages, icon: "fa fa-star", label: '职位管理'
   end
+  remove_action :new
+
 
   # Customize the table columns shown on the index view.
   #

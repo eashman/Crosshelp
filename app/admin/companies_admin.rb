@@ -4,6 +4,8 @@ Trestle.resource(:companies) do
   menu do
     item :companies, icon: 'fa fa-tachometer', label: '公司'
   end
+  remove_action :new
+
 
   # Customize the table columns shown on the index view.
   #

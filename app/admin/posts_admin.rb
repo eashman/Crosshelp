@@ -2,6 +2,8 @@ Trestle.resource(:posts) do
   menu do
     item :posts, icon: "fa fa-star", label: '提问'
   end
+  remove_action :new
+
 
   # Customize the table columns shown on the index view.
   #

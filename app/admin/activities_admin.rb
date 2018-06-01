@@ -4,6 +4,7 @@ Trestle.resource(:activities) do
   menu do
     item :activities, icon: 'fa fa-wrench', label: '活动',group: '活动吧'
   end
+  remove_action :new
 
   # Customize the table columns shown on the index view.
   #

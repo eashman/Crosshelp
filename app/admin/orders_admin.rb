@@ -2,6 +2,8 @@ Trestle.resource(:orders) do
   menu do
     item :orders, icon: "fa fa-star", label: '订单'
   end
+  remove_action :new
+
 
   # Customize the table columns shown on the index view.
   #
