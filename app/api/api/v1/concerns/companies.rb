@@ -35,6 +35,18 @@ module API
             )
           end
 
+          desc '热门职位 [GET /companies/hot/jobs]'
+          params do
+            requires :companyId, type: String, desc: '公司ID'
+          end
+          get '/companies/hot/jobs' do
+            company = Company.find_by(id: params.companyId)
+            jobmanages = company.jobmanages if company
+            wrap_meta(
+              jobmanages: Entities::JobmanageList.represent(jobmanages).as_json
+            )
+          end
+
           desc '申请认证企业 [PATCH /companies/corporater]'
           params do
             requires :logo, type: String, desc: 'logo'

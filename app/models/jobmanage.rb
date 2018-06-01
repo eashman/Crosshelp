@@ -18,7 +18,13 @@
 #
 
 class Jobmanage < ApplicationRecord
+  extend Enumerize
   belongs_to :user, optional: true
   belongs_to :company, optional: true
   has_and_belongs_to_many :applicants
+  enumerize :state, in: [
+    :normal,    # 发布
+    :finish,     # 完成
+    :stop      # 停止
+  ], default: :normal, predicates: { prefix: true }, scope: true
 end
