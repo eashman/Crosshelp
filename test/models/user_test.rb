@@ -39,6 +39,7 @@
 #  activityids      :integer          default([]), is an Array
 #  collection_ids   :integer          default([]), is an Array
 #  follow_ids       :integer          default([]), is an Array
+#  recruit          :string           default("normal")
 #
 
 require 'test_helper'

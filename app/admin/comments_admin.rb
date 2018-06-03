@@ -1,9 +1,8 @@
-Trestle.resource(:posts) do
+Trestle.resource(:comments) do
   menu do
-    item :posts, icon: "fa fa-star", label: '提问',group: '问吧'
+    item :comments, icon: "fa fa-star", label: '回答',group: '问吧'
   end
   remove_action :new
-
 
   # Customize the table columns shown on the index view.
   #
@@ -15,7 +14,7 @@ Trestle.resource(:posts) do
 
   # Customize the form fields shown on the new/edit views.
   #
-  # form do |post|
+  # form do |comment|
   #   text_field :name
   #
   #   row do
@@ -32,6 +31,6 @@ Trestle.resource(:posts) do
   #   http://guides.rubyonrails.org/action_controller_overview.html#strong-parameters
   #
   # params do |params|
-  #   params.require(:post).permit(:name, ...)
+  #   params.require(:comment).permit(:name, ...)
   # end
 end

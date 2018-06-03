@@ -15,6 +15,8 @@
 #  workcontent  :text
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  company_id   :integer
+#  state        :string           default("normal")
 #
 
 class Jobmanage < ApplicationRecord

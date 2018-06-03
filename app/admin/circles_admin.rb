@@ -1,6 +1,6 @@
 Trestle.resource(:circles) do
   menu do
-    item :circles, icon: "fa fa-star",label: '圈子'
+    item :circles, icon: "fa fa-star",label: '圈子',group: '人脉'
   end
   remove_action :new
 
